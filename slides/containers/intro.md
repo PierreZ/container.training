@@ -4,6 +4,8 @@
 
 - These materials are maintained by [Jérôme Petazzoni](https://twitter.com/jpetazzo) and [multiple contributors](https://@@GITREPO@@/graphs/contributors)
 
+- If you have an Github account, please [star the project](https://github.com/jpetazzo/container.training/)
+
 - You can also follow along on your own, at your own pace
 
 - We included as much information as possible in these slides

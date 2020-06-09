@@ -1,0 +1,33 @@
+title: Kubernetes 101
+
+#chat: "[Slack](https://dockercommunity.slack.com/messages/C7GKACWDV)"
+#chat: "[Gitter](https://gitter.im/jpetazzo/workshop-yyyymmdd-city)"
+chat: "In person!"
+
+gitrepo: github.com/jpetazzo/container.training
+
+slides: pierrez.github.io/container.training/kubernetes.html
+
+#slidenumberprefix: "#SomeHashTag &mdash; "
+
+exclude:
+- self-paced
+
+content:
+- shared/title.md
+- logistics.md
+- k8s/intro.md
+- shared/toc.md
+-
+  - k8s/concepts-k8s.md
+  - k8s/kubectlget.md
+  - k8s/kubectl-run.md
+-
+  - shared/declarative.md
+  - k8s/declarative.md
+  - k8s/deploymentslideshow.md
+  - k8s/kubectlexpose.md
+  - k8s/yamldeploy.md
+-
+  - k8s/links.md
+  - shared/thankyou.md

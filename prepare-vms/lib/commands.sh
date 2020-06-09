@@ -100,7 +100,7 @@ _cmd_deploy() {
     pssh -I tee /tmp/settings.yaml <tags/$TAG/settings.yaml
     pssh "
     sudo apt-get update &&
-    sudo apt-get install -y python-yaml"
+    sudo apt-get install -y python python-yaml"
 
     # Copy postprep.py to the remote machines, and execute it, feeding it the list of IP addresses
     pssh -I tee /tmp/postprep.py <lib/postprep.py

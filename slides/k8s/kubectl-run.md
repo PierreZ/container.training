@@ -202,33 +202,8 @@ class: extra-details
 
 - If some containers fail and don't get restarted, the Pod ends in "Failed" phase
 
----
-
-## Replica Set
-
-- Set of identical (replicated) Pods
-
-- Defined by a pod template + number of desired replicas
-
-- If there are not enough Pods, the Replica Set creates more
-
-  (e.g. in case of node outage; or simply when scaling up)
-
-- If there are too many Pods, the Replica Set deletes some
-
-  (e.g. if a node was disconnected and comes back; or when scaling down)
-
-- We can scale up/down a Replica Set
-
-  - we update the manifest of the Replica Set
-
-  - as a consequence, the Replica Set controller creates/deletes Pods
-
----
 
 ## Deployment
-
-- Replica Sets control *identical* Pods
 
 - Deployments are used to roll out different Pods
 

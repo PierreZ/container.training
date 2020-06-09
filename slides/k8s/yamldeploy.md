@@ -70,26 +70,18 @@
 
 ---
 
-## Deploying dockercoins with YAML
+## Deploying nginx with YAML
 
-- We provide a YAML manifest with all the resources for Dockercoins
-
-  (Deployments and Services)
-
-- We can use it if we need to deploy or redeploy Dockercoins
+You can find an example [here](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment).
 
 .exercise[
 
-- Deploy or redeploy Dockercoins:
+- Deploy or redeploy nginx:
   ```bash
-  kubectl apply -f ~/container.training/k8s/dockercoins.yaml
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/deployment.yaml
   ```
 
 ]
-
-(If we deployed Dockercoins earlier, we will see warning messages,
-because the resources that we created lack the necessary annotation.
-We can safely ignore them.)
 
 ---
 
