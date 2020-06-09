@@ -11,6 +11,9 @@ slides/past.html
 slides/slides.zip
 node_modules
 
+prepare-vms/infra/openstack
+.idea
+
 ### macOS ###
 # General
 .DS_Store
