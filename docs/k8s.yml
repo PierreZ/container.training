@@ -6,7 +6,7 @@ chat: "In person!"
 
 gitrepo: github.com/jpetazzo/container.training
 
-slides: pierrez.github.io/container.training/kubernetes.html
+slides: https://pierrez.github.io/container.training/k8s.html#1
 
 #slidenumberprefix: "#SomeHashTag &mdash; "
 

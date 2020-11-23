@@ -209,7 +209,7 @@ _cmd_kube() {
     echo 'complete -F __start_kubectl k' | sudo tee -a /etc/bash_completion.d/k"
 
     pssh -I tee /tmp/kubeconfig-admin.yml </home/pierrez/Downloads/kubeconfig.yml
-    pssh -I tee /tmp/generate.sh <lib/generate.sh
+    pssh -I tee /tmp/generate.sh <generate.sh
     pssh sudo mkdir -p /home/docker/.kube
     pssh sudo chmod +x /tmp/generate.sh
     pssh /tmp/generate.sh

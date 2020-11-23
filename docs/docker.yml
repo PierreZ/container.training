@@ -7,7 +7,7 @@ chat: "[Slack](https://dockercommunity.slack.com/messages/C7GKACWDV)"
 
 gitrepo: github.com/jpetazzo/container.training
 
-slides: pierrez.github.io/container.training/containers.html
+slides: pierrez.github.io/container.training/docker.html
 
 #slidenumberprefix: "#SomeHashTag &mdash; "
 
@@ -33,14 +33,14 @@ content:
   #- containers/Start_And_Attach.md
   - containers/Naming_And_Inspecting.md
   #- containers/Labels.md
-  - containers/Getting_Inside.md
+  # - containers/Getting_Inside.md
   - containers/Initial_Images.md
 -
   - containers/Building_Images_Interactively.md
   - containers/Building_Images_With_Dockerfiles.md
   - containers/Cmd_And_Entrypoint.md
   - containers/Copying_Files_During_Build.md
-  - containers/Exercise_Dockerfile_Basic.md
+ # - containers/Exercise_Dockerfile_Basic.md
 -
   - containers/Container_Networking_Basics.md
   #- containers/Network_Drivers.md

@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kubernetes 101</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="workshop.css">
+  </head>
+  <body>
+    <!--
+    <div style="position: absolute; left: 20%; right: 20%; top: 30%;">
+      <h1 style="font-size: 3em;">Loading ...</h1>
+      The slides should show up here. If they don't, it might be
+      because you are accessing this file directly from your filesystem.
+      It needs to be served from a web server. You can try this:
+      <pre>
+        docker-compose up -d
+        open http://localhost:8888/workshop.html # on MacOS
+        xdg-open http://localhost:8888/workshop.html # on Linux
+      </pre>
+      Once the slides are loaded, this notice disappears when you
+      go full screen (e.g. by hitting "f").
+    </div>
+    -->
+    <textarea id="source">class: title, self-paced
+
+Kubernetes 101
+
+.nav[*Self-paced version*]
+
+.debug[
+```
+ D docs/Dockerfile
+ D docs/README.md
+ D docs/TODO
+ D docs/_redirects
+ D docs/appendcheck.py
+ D docs/autopilot/autotest.py
+ D docs/autopilot/gotoslide.js
+ D docs/autopilot/package-lock.json
+ D docs/autopilot/package.json
+ D docs/autopilot/remote.js
+ D docs/autopilot/requirements.txt
+ D docs/autopilot/server.js
+ D docs/autopilot/tmux-style.sh
+ D docs/build.sh
+ D docs/containers.yml
+ D docs/containers.yml.html
+ D docs/containers/Advanced_Dockerfiles.md
+ D docs/containers/Ambassadors.md
+ D docs/containers/Application_Configuration.md
+ D docs/containers/Background_Containers.md
+ D docs/containers/Building_Images_Interactively.md
+ D docs/containers/Building_Images_With_Dockerfiles.md
+ D docs/containers/Cmd_And_Entrypoint.md
+ D docs/containers/Compose_For_Dev_Stacks.md
+ D docs/containers/Connecting_Containers_With_Links.md
+ D docs/containers/Container_Engines.md
+ D docs/containers/Container_Network_Model.md
+ D docs/containers/Container_Networking_Basics.md
+ D docs/containers/Containers_From_Scratch.md
+ D docs/containers/Copy_On_Write.md
+ D docs/containers/Copying_Files_During_Build.md
+ D docs/containers/Docker_History.md
+ D docs/containers/Docker_Machine.md
+ D docs/containers/Docker_Overview.md
+ D docs/containers/Dockerfile_Tips.md
+ D docs/containers/Ecosystem.md
+ D docs/containers/Exercise_Composefile.md
+ D docs/containers/Exercise_Dockerfile_Advanced.md
+ D docs/containers/Exercise_Dockerfile_Basic.md
+ D docs/containers/First_Containers.md
+ D docs/containers/Getting_Inside.md
+ D docs/containers/Init_Systems.md
+ D docs/containers/Initial_Images.md
+ D docs/containers/Installing_Docker.md
+ D docs/containers/Labels.md
+ D docs/containers/Local_Development_Workflow.md
+ D docs/containers/Logging.md
+ D docs/containers/Multi_Stage_Builds.md
+ D docs/containers/Namespaces_Cgroups.md
+ D docs/containers/Naming_And_Inspecting.md
+ D docs/containers/Network_Drivers.md
+ D docs/containers/Orchestration_Overview.md
+ D docs/containers/Pods_Anatomy.md
+ D docs/containers/Publishing_To_Docker_Hub.md
+ D docs/containers/Resource_Limits.md
+ D docs/containers/Start_And_Attach.md
+ D docs/containers/Training_Environment.md
+ D docs/containers/Windows_Containers.md
+ D docs/containers/Working_With_Volumes.md
+ D docs/containers/intro.md
+ D docs/containers/links.md
+ D docs/count-slides.py
+ D docs/docker-compose.yaml
+ D docs/find-non-ascii.sh
+ D docs/fix-redirects.sh
+ D docs/images/aj-containers.jpeg
+ D docs/images/ambassador-diagram.odg
+ D docs/images/ambassador-diagram.png
+ D docs/images/api-request-lifecycle.png
+ D docs/images/bell-curve.jpg
+ D docs/images/binpacking-1d-1.gif
+ D docs/images/binpacking-1d-2.gif
+ D docs/images/binpacking-2d.gif
+ D docs/images/binpacking-3d.gif
+ D docs/images/blackbelt.png
+ D docs/images/bridge1.png
+ D docs/images/bridge2.png
+ D docs/images/bridge3.png
+ D docs/images/ci-cd-with-docker.png
+ D docs/images/composeapp.png
+ D docs/images/composeup.gif
+ D docs/images/conductor.jpg
+ D docs/images/container-background.jpg
+ D docs/images/container-layers.jpg
+ D docs/images/containers-as-lightweight-vms.png
+ D docs/images/delay-hasher.png
+ D docs/images/delay-rng.png
+ D docs/images/demo.jpg
+ D docs/images/docker-ce-ee-lifecycle.png
+ D docs/images/docker-con-15-logo.svg
+ D docs/images/docker-ecosystem-2015.png
+ D docs/images/docker-engine-architecture.svg
+ D docs/images/docker-service-create.svg
+ D docs/images/dockercoins-2015.png
+ D docs/images/dockercoins-diagram.svg
+ D docs/images/dockercoins-diagram.xml
+ D docs/images/dockercoins-multi-node.png
+ D docs/images/dockercoins-single-node.png
+ D docs/images/dockercoins.png
+ D docs/images/dockerd-and-containerd.png
+ D docs/images/dragons.jpg
+ D docs/images/end.jpg
+ D docs/images/entrypoint.jpg
+ D docs/images/equations.png
+ D docs/images/extra-details.png
+ D docs/images/fu-face.jpg
+ D docs/images/getting-inside.png
+ D docs/images/grafana-add-graph.png
+ D docs/images/grafana-add-source.png
+ D docs/images/heroku-first-homepage.png
+ D docs/images/hpa-v2-pa-latency.png
+ D docs/images/hpa-v2-pa-pods.png
+ D docs/images/ingress-lb.png
+ D docs/images/ingress-routing-mesh.png
+ D docs/images/k8s-arch1.png
+ D docs/images/k8s-arch2.png
+ D docs/images/k8s-arch3-thanks-weave.png
+ D docs/images/k8s-arch4-thanks-luxas.png
+ D docs/images/keyboard.png
+ D docs/images/kibana.png
+ D docs/images/kubectl-create-deployment-slideshow/01.svg
+ D docs/images/kubectl-create-deployment-slideshow/02.svg
+ D docs/images/kubectl-create-deployment-slideshow/03.svg
+ D docs/images/kubectl-create-deployment-slideshow/04.svg
+ D docs/images/kubectl-create-deployment-slideshow/05.svg
+ D docs/images/kubectl-create-deployment-slideshow/06.svg
+ D docs/images/kubectl-create-deployment-slideshow/07.svg
+ D docs/images/kubectl-create-deployment-slideshow/08.svg
+ D docs/images/kubectl-create-deployment-slideshow/09.svg
+ D docs/images/kubectl-create-deployment-slideshow/10.svg
+ D docs/images/kubectl-create-deployment-slideshow/11.svg
+ D docs/images/kubectl-create-deployment-slideshow/12.svg
+ D docs/images/kubectl-create-deployment-slideshow/13.svg
+ D docs/images/kubectl-create-deployment-slideshow/14.svg
+ D docs/images/kubectl-create-deployment-slideshow/15.svg
+ D docs/images/kubectl-create-deployment-slideshow/16.svg
+ D docs/images/kubectl-create-deployment-slideshow/17.svg
+ D docs/images/kubectl-create-deployment-slideshow/18.svg
+ D docs/images/kubectl-create-deployment-slideshow/19.svg
+ D docs/images/kubernetes_pods.drawio
+ D docs/images/kubernetes_pods.svg
+ D docs/images/mario-red-shell.png
+ D docs/images/pwd-icons.png
+ D docs/images/registry-frontends.png
+ D docs/images/service-discovery.png
+ D docs/images/sharing-layers.jpg
+ D docs/images/shipping-indsutry-results.png
+ D docs/images/shipping-industry-problem.png
+ D docs/images/shipping-industry-solution.png
+ D docs/images/shipping-matrix-from-hell.png
+ D docs/images/shipping-matrix-solved.png
+ D docs/images/shipping-software-problem.png
+ D docs/images/shipping-software-solution.png
+ D docs/images/startrek-federation.jpg
+ D docs/images/swarm-mode.svg
+ D docs/images/swarm.png
+ D docs/images/tangram.gif
+ D docs/images/tesla.jpg
+ D docs/images/tetris-1.png
+ D docs/images/tetris-2.gif
+ D docs/images/tetris-3.png
+ D docs/images/title-advanced-dockerfiles.jpg
+ D docs/images/title-ambassador.jpg
+ D docs/images/title-background-containers.jpg
+ D docs/images/title-building-docker-images-with-a-dockerfile.jpg
+ D docs/images/title-connecting-containers-with-links.gif
+ D docs/images/title-container-networking-basics.jpg
+ D docs/images/title-copying-files-during-build.jpg
+ D docs/images/title-installing-docker.jpg
+ D docs/images/title-local-development-workflow-with-docker.jpg
+ D docs/images/title-naming-and-inspecting-containers.jpg
+ D docs/images/title-our-first-containers.jpg
+ D docs/images/title-our-training-environment.jpg
+ D docs/images/title-the-container-network-model.jpg
+ D docs/images/title-understanding-docker-images.png
+ D docs/images/title-working-with-volumes.jpg
+ D docs/images/traffic-graph.png
+ D docs/images/trainingwheels-error.png
+ D docs/images/trainingwheels-ok.png
+ D docs/images/trollface.png
+ D docs/images/warning.png
+ D docs/images/webapp-in-blue.png
+ D docs/images/webapp-in-red.png
+ D docs/images/welcome-to-nginx.png
+ D docs/images/windows-containers.jpg
+ D docs/images/you-get-a-cluster.jpg
+ D docs/images/you-get-five-vms.jpg
+ D docs/index.css
+ D docs/index.html
+ D docs/index.py
+ D docs/index.yaml
+ D docs/interstitials.txt
+ D docs/intro-fullday.yml
+ D docs/intro-fullday.yml.html
+ D docs/intro-selfpaced.yml
+ D docs/intro-selfpaced.yml.html
+ D docs/intro-twodays.yml
+ D docs/intro-twodays.yml.html
+ D docs/k8s.html
+ D docs/k8s/accessinternal.md
+ D docs/k8s/admission.md
+ D docs/k8s/apilb.md
+ D docs/k8s/architecture.md
+ D docs/k8s/authn-authz.md
+ D docs/k8s/batch-jobs.md
+ D docs/k8s/bootstrap.md
+ D docs/k8s/build-with-docker.md
+ D docs/k8s/build-with-kaniko.md
+ D docs/k8s/buildshiprun-dockerhub.md
+ D docs/k8s/buildshiprun-selfhosted.md
+ D docs/k8s/cloud-controller-manager.md
+ D docs/k8s/cluster-backup.md
+ D docs/k8s/cluster-sizing.md
+ D docs/k8s/cluster-upgrade.md
+ D docs/k8s/cni.md
+ D docs/k8s/concepts-k8s.md
+ D docs/k8s/configuration.md
+ D docs/k8s/control-plane-auth.md
+ D docs/k8s/crd.md
+ D docs/k8s/csr-api.md
+ D docs/k8s/daemonset.md
+ D docs/k8s/dashboard.md
+ D docs/k8s/declarative.md
+ D docs/k8s/deploymentslideshow.md
+ D docs/k8s/dmuc.md
+ D docs/k8s/dryrun.md
+ D docs/k8s/eck.md
+ D docs/k8s/exercise-configmap.md
+ D docs/k8s/exercise-helm.md
+ D docs/k8s/exercise-wordsmith.md
+ D docs/k8s/exercise-yaml.md
+ D docs/k8s/extending-api.md
+ D docs/k8s/finalizers.md
+ D docs/k8s/gitworkflows.md
+ D docs/k8s/healthchecks-more.md
+ D docs/k8s/healthchecks.md
+ D docs/k8s/helm-chart-format.md
+ D docs/k8s/helm-create-basic-chart.md
+ D docs/k8s/helm-create-better-chart.md
+ D docs/k8s/helm-intro.md
+ D docs/k8s/helm-secrets.md
+ D docs/k8s/horizontal-pod-autoscaler.md
+ D docs/k8s/hpa-v2.md
+ D docs/k8s/ingress-tls.md
+ D docs/k8s/ingress.md
+ D docs/k8s/interco.md
+ D docs/k8s/intro.md
+ D docs/k8s/kubectl-logs.md
+ D docs/k8s/kubectl-run.md
+ D docs/k8s/kubectlexpose.md
+ D docs/k8s/kubectlget.md
+ D docs/k8s/kubectlproxy.md
+ D docs/k8s/kubectlscale.md
+ D docs/k8s/kubenet.md
+ D docs/k8s/kubercoins.md
+ D docs/k8s/kustomize.md
+ D docs/k8s/kyverno.md
+ D docs/k8s/labels-annotations.md
+ D docs/k8s/lastwords.md
+ D docs/k8s/links-bridget.md
+ D docs/k8s/links.md
+ D docs/k8s/local-persistent-volumes.md
+ D docs/k8s/localkubeconfig.md
+ D docs/k8s/logs-centralized.md
+ D docs/k8s/logs-cli.md
+ D docs/k8s/metrics-server.md
+ D docs/k8s/multinode.md
+ D docs/k8s/namespaces.md
+ D docs/k8s/netpol.md
+ D docs/k8s/openid-connect.md
+ D docs/k8s/operators-design.md
+ D docs/k8s/operators.md
+ D docs/k8s/ourapponkube.md
+ D docs/k8s/owners-and-dependents.md
+ D docs/k8s/podsecuritypolicy.md
+ D docs/k8s/portworx.md
+ D docs/k8s/prereqs-admin.md
+ D docs/k8s/prometheus.md
+ D docs/k8s/record.md
+ D docs/k8s/resource-limits.md
+ D docs/k8s/rollout.md
+ D docs/k8s/scalingdockercoins.md
+ D docs/k8s/setup-devel.md
+ D docs/k8s/setup-managed.md
+ D docs/k8s/setup-overview.md
+ D docs/k8s/setup-selfhosted.md
+ D docs/k8s/shippingimages.md
+ D docs/k8s/statefulsets.md
+ D docs/k8s/staticpods.md
+ D docs/k8s/user-cert.md
+ D docs/k8s/versions-k8s.md
+ D docs/k8s/volumes.md
+ D docs/k8s/whatsnext.md
+ D docs/k8s/yamldeploy.md
+ D docs/kadm-fullday.yml
+ D docs/kadm-fullday.yml.html
+ D docs/kadm-twodays.yml
+ D docs/kadm-twodays.yml.html
+ D docs/kube-fullday.yml
+ D docs/kube-fullday.yml.html
+ D docs/kube-halfday.yml
+ D docs/kube-halfday.yml.html
+ D docs/kube-selfpaced.yml
+ D docs/kube-selfpaced.yml.html
+ D docs/kube-twodays.yml
+ D docs/kube-twodays.yml.html
+ D docs/kubernetes.yml
+ D docs/kubernetes.yml.html
+ D docs/logistics-bridget.md
+ D docs/logistics-online.md
+ D docs/logistics-template.md
+ D docs/logistics.md
+ D docs/markmaker.py
+ D docs/past.html
+ D docs/qrcode.html
+ D docs/remark-0.14.min.js
+ D docs/remark.min.js
+ D docs/rename.sh
+ D docs/requirements.txt
+ D docs/runtime.txt
+ D docs/shared/about-slides.md
+ D docs/shared/chat-room-im.md
+ D docs/shared/chat-room-twitch.md
+ D docs/shared/chat-room-zoom-meeting.md
+ D docs/shared/chat-room-zoom-webinar.md
+ D docs/shared/composedown.md
+ D docs/shared/composescale.md
+ D docs/shared/connecting.md
+ D docs/shared/declarative.md
+ D docs/shared/hastyconclusions.md
+ D docs/shared/prereqs.md
+ D docs/shared/pwd.md
+ D docs/shared/sampleapp.md
+ D docs/shared/thankyou.md
+ D docs/shared/title.md
+ D docs/shared/toc.md
+ D docs/shared/webssh.md
+ D docs/slidechecker.js
+ D docs/slides.zip
+ D docs/swarm-fullday.yml
+ D docs/swarm-fullday.yml.html
+ D docs/swarm-halfday.yml
+ D docs/swarm-halfday.yml.html
+ D docs/swarm-selfpaced.yml
+ D docs/swarm-selfpaced.yml.html
+ D docs/swarm-video.yml
+ D docs/swarm-video.yml.html
+ D docs/swarm/apiscope.md
+ D docs/swarm/btp-manual.md
+ D docs/swarm/cicd.md
+ D docs/swarm/creatingswarm.md
+ D docs/swarm/encryptionatrest.md
+ D docs/swarm/extratips.md
+ D docs/swarm/firstservice.md
+ D docs/swarm/gui.md
+ D docs/swarm/healthchecks.md
+ D docs/swarm/hostingregistry.md
+ D docs/swarm/intro.md
+ D docs/swarm/ipsec.md
+ D docs/swarm/leastprivilege.md
+ D docs/swarm/links.md
+ D docs/swarm/logging.md
+ D docs/swarm/machine.md
+ D docs/swarm/metrics.md
+ D docs/swarm/morenodes.md
+ D docs/swarm/namespaces.md
+ D docs/swarm/netshoot.md
+ D docs/swarm/nodeinfo.md
+ D docs/swarm/operatingswarm.md
+ D docs/swarm/ourapponswarm.md
+ D docs/swarm/pickregistry.md
+ D docs/swarm/rollingupdates.md
+ D docs/swarm/secrets.md
+ D docs/swarm/security.md
+ D docs/swarm/stacks.md
+ D docs/swarm/stateful.md
+ D docs/swarm/swarmkit.md
+ D docs/swarm/swarmmode.md
+ D docs/swarm/swarmnbt.md
+ D docs/swarm/swarmready.md
+ D docs/swarm/swarmtools.md
+ D docs/swarm/testingregistry.md
+ D docs/swarm/updatingservices.md
+ D docs/swarm/versions.md
+ D docs/workshop.css
+ D docs/workshop.html
+ D docs/yncrea.yml.html
+ D slides/containers.yml
+ D slides/kubernetes.yml
+?? slides/docker.yml
+?? slides/k8s.yml
+
+```
+
+These slides have been built from commit: eb3f64d
+
+
+[shared/title.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/title.md)]
+---
+
+class: title, in-person
+
+Kubernetes 101<br/></br>
+
+.footnote[
+**Slides[:](https://www.youtube.com/watch?v=h16zyxiwDLY) https://pierrez.github.io/container.training/k8s.html#1**
+]
+
+<!--
+WiFi: **Something**<br/>
+Password: **Something**
+
+**Be kind to the WiFi!**<br/>
+*Use the 5G network.*
+*Don't use your hotspot.*<br/>
+*Don't stream videos or download big files during the workshop*<br/>
+*Thank you!*
+-->
+
+.debug[[shared/title.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/title.md)]
+---
+## Intros
+
+- Hello! I am:
+
+   - Pierre Zemb ([@PierreZ](https://twitter.com/PierreZ), OVHcloud)
+
+- The workshop will run from 5:45pm to 7:45pm
+
+- Feel free to interrupt for questions at any time
+
+- *Especially when you see full screen container pictures!*
+.debug[[logistics.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/logistics.md)]
+---
+## A brief introduction
+
+- This was initially written by [Jérôme Petazzoni](https://twitter.com/jpetazzo) to support in-person,
+  instructor-led workshops and tutorials
+  
+- Credit is also due to [multiple contributors](https://github.com/jpetazzo/container.training/graphs/contributors) — thank you!
+
+- You can also follow along on your own, at your own pace
+
+- We included as much information as possible in these slides
+
+- We recommend having a mentor to help you ...
+
+- ... Or be comfortable spending some time reading the Kubernetes [documentation](https://kubernetes.io/docs/) ...
+
+- ... And looking for answers on [StackOverflow](http://stackoverflow.com/questions/tagged/kubernetes) and other outlets
+
+.debug[[k8s/intro.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/intro.md)]
+---
+
+class: self-paced
+
+## Hands on, you shall practice
+
+- Nobody ever became a Jedi by spending their lives reading Wookiepedia
+
+- Likewise, it will take more than merely *reading* these slides
+  to make you an expert
+
+- These slides include *tons* of exercises and examples
+
+- They assume that you have access to a Kubernetes cluster
+
+- If you are attending a workshop or tutorial:
+  <br/>you will be given specific instructions to access your cluster
+
+- If you are doing this on your own:
+  <br/>the first chapter will give you various options to get your own cluster
+
+.debug[[k8s/intro.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/intro.md)]
+---
+
+name: toc-module-1
+
+## Module 1
+
+- [Kubernetes concepts](#toc-kubernetes-concepts)
+
+- [First contact with `kubectl`](#toc-first-contact-with-kubectl)
+
+- [Running our first containers on Kubernetes](#toc-running-our-first-containers-on-kubernetes)
+
+.debug[(auto-generated TOC)]
+---
+name: toc-module-2
+
+## Module 2
+
+- [Declarative vs imperative](#toc-declarative-vs-imperative)
+
+- [Exposing containers](#toc-exposing-containers)
+
+- [Deploying with YAML](#toc-deploying-with-yaml)
+
+.debug[(auto-generated TOC)]
+---
+name: toc-module-3
+
+## Module 3
+
+- [Links and resources](#toc-links-and-resources)
+
+.debug[(auto-generated TOC)]
+
+
+
+.debug[[shared/toc.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/toc.md)]
+---
+
+class: pic
+
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
+
+---
+
+name: toc-kubernetes-concepts
+class: title
+
+ Kubernetes concepts
+
+.nav[
+[Previous section](#toc-)
+|
+[Back to table of contents](#toc-module-1)
+|
+[Next section](#toc-first-contact-with-kubectl)
+]
+
+.debug[(automatically generated title slide)]
+
+---
+# Kubernetes concepts
+
+- Kubernetes is a container management system
+
+- It runs and manages containerized applications on a cluster
+
+--
+
+- What does that really mean?
+
+.debug[[k8s/concepts-k8s.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/concepts-k8s.md)]
+---
+
+## What can we do with Kubernetes?
+
+- Let's imagine that we have a 3-tier e-commerce app:
+
+  - web frontend
+
+  - API backend
+
+  - database (that we will keep out of Kubernetes for now)
+
+- We have built images for our frontend and backend components
+
+  (e.g. with Dockerfiles and `docker build`)
+
+- We are running them successfully with a local environment
+
+  (e.g. with Docker Compose)
+
+- Let's see how we would deploy our app on Kubernetes!
+
+.debug[[k8s/concepts-k8s.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/concepts-k8s.md)]
+---
+
+
+## Basic things we can ask Kubernetes to do
+
+--
+
+- Start 5 containers using image `atseashop/api:v1.3`
+
+--
+
+- Place an internal load balancer in front of these containers
+
+--
+
+- Start 10 containers using image `atseashop/webfront:v1.3`
+
+--
+
+- Place a public load balancer in front of these containers
+
+--
+
+- It's Black Friday (or Christmas), traffic spikes, grow our cluster and add containers
+
+--
+
+- New release! Replace my containers with the new image `atseashop/webfront:v1.4`
+
+--
+
+- Keep processing requests during the upgrade; update my containers one at a time
+
+.debug[[k8s/concepts-k8s.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/concepts-k8s.md)]
+---
+
+## Other things that Kubernetes can do for us
+
+- Autoscaling
+
+  (straightforward on CPU; more complex on other metrics)
+
+- Resource management and scheduling
+
+  (reserve CPU/RAM for containers; placement constraints)
+
+- Advanced rollout patterns
+
+  (blue/green deployment, canary deployment)
+
+.debug[[k8s/concepts-k8s.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/concepts-k8s.md)]
+---
+
+## More things that Kubernetes can do for us
+
+- Batch jobs
+
+  (one-off; parallel; also cron-style periodic execution)
+
+- Fine-grained access control
+
+  (defining *what* can be done by *whom* on *which* resources)
+
+- Stateful services
+
+  (databases, message queues, etc.)
+
+- Automating complex tasks with *operators*
+
+  (e.g. database replication, failover, etc.)
+
+.debug[[k8s/concepts-k8s.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/concepts-k8s.md)]
+---
+
+
+## Interacting with Kubernetes
+
+- We will interact with our Kubernetes cluster through the Kubernetes API
+
+- The Kubernetes API is (mostly) RESTful
+
+- It allows us to create, read, update, delete *resources*
+
+- A few common resource types are:
+
+  - node (a machine — physical or virtual — in our cluster)
+
+  - pod (group of containers running together on a node)
+
+  - service (stable network endpoint to connect to one or multiple containers)
+
+
+## Scaling
+
+- How would we scale the pod shown on the previous slide?
+
+- **Do** create additional pods
+
+  - each pod can be on a different node
+
+  - each pod will have its own IP address
+
+- **Do not** add more NGINX containers in the pod
+
+  - all the NGINX containers would be on the same node
+
+  - they would all have the same IP address
+    <br/>(resulting in `Address alreading in use` errors)
+
+.debug[[k8s/concepts-k8s.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/concepts-k8s.md)]
+---
+
+## Together or separate
+
+- Should we put e.g. a web application server and a cache together?
+  <br/>
+  ("cache" being something like e.g. Memcached or Redis)
+
+- Putting them **in the same pod** means:
+
+  - they have to be scaled together
+
+  - they can communicate very efficiently over `localhost`
+
+- Putting them **in different pods** means:
+
+  - they can be scaled separately
+
+  - they must communicate over remote IP addresses
+    <br/>(incurring more latency, lower performance)
+
+- Both scenarios can make sense, depending on our goals
+
+
+???
+
+:EN:- Kubernetes concepts
+:FR:- Kubernetes en théorie
+
+.debug[[k8s/concepts-k8s.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/concepts-k8s.md)]
+---
+
+class: pic
+
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
+
+---
+
+name: toc-first-contact-with-kubectl
+class: title
+
+ First contact with `kubectl`
+
+.nav[
+[Previous section](#toc-kubernetes-concepts)
+|
+[Back to table of contents](#toc-module-1)
+|
+[Next section](#toc-running-our-first-containers-on-kubernetes)
+]
+
+.debug[(automatically generated title slide)]
+
+---
+# First contact with `kubectl`
+
+- `kubectl` is (almost) the only tool we'll need to talk to Kubernetes
+
+- It is a rich CLI tool around the Kubernetes API
+
+  (Everything you can do with `kubectl`, you can do directly with the API)
+
+- On our machines, there is a `~/.kube/config` file with:
+
+  - the Kubernetes API address
+
+  - the path to our TLS certificates used to authenticate
+
+- You can also use the `--kubeconfig` flag to pass a config file
+
+- Or directly `--server`, `--user`, etc.
+
+- `kubectl` can be pronounced "Cube C T L", "Cube cuttle", "Cube cuddle"...
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+class: extra-details
+
+## `kubectl` is the new SSH
+
+- We often start managing servers with SSH
+
+  (installing packages, troubleshooting ...)
+
+- At scale, it becomes tedious, repetitive, error-prone
+
+- Instead, we use config management, central logging, etc.
+
+- In many cases, we still need SSH:
+
+  - as the underlying access method (e.g. Ansible)
+
+  - to debug tricky scenarios
+
+  - to inspect and poke at things
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+class: extra-details
+
+## The parallel with `kubectl`
+
+- We often start managing Kubernetes clusters with `kubectl`
+
+  (deploying applications, troubleshooting ...)
+
+- At scale (with many applications or clusters), it becomes tedious, repetitive, error-prone
+
+- Instead, we use automated pipelines, observability tooling, etc.
+
+- In many cases, we still need `kubectl`:
+
+  - to debug tricky scenarios
+
+  - to inspect and poke at things
+
+- The Kubernetes API is always the underlying access method
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## `kubectl get`
+
+- Let's look at our `Node` resources with `kubectl get`!
+
+.exercise[
+
+- Look at the composition of our cluster:
+  ```bash
+  kubectl get node
+  ```
+
+- These commands are equivalent:
+  ```bash
+  kubectl get no
+  kubectl get node
+  kubectl get nodes
+  ```
+
+]
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Obtaining machine-readable output
+
+- `kubectl get` can output JSON, YAML, or be directly formatted
+
+.exercise[
+
+- Give us more info about the nodes:
+  ```bash
+  kubectl get nodes -o wide
+  ```
+
+- Let's have some YAML:
+  ```bash
+  kubectl get no -o yaml
+  ```
+  See that `kind: List` at the end? It's the type of our result!
+
+]
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## (Ab)using `kubectl` and `jq`
+
+- It's super easy to build custom reports
+
+.exercise[
+
+- Show the capacity of all our nodes as a stream of JSON objects:
+  ```bash
+    kubectl get nodes -o json |
+            jq ".items[] | {name:.metadata.name} + .status.capacity"
+  ```
+
+]
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+class: extra-details
+
+## Exploring types and definitions
+
+- We can list all available resource types by running `kubectl api-resources`
+  <br/>
+  (In Kubernetes 1.10 and prior, this command used to be `kubectl get`)
+
+- We can view the definition for a resource type with:
+  ```bash
+  kubectl explain type
+  ```
+
+- We can view the definition of a field in a resource, for instance:
+  ```bash
+  kubectl explain node.spec
+  ```
+
+- Or get the full definition of all fields and sub-fields:
+  ```bash
+  kubectl explain node --recursive
+  ```
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+class: extra-details
+
+## Introspection vs. documentation
+
+- We can access the same information by reading the [API documentation](https://kubernetes.io/docs/reference/#api-reference)
+
+- The API documentation is usually easier to read, but:
+
+  - it won't show custom types (like Custom Resource Definitions)
+
+  - we need to make sure that we look at the correct version
+
+- `kubectl api-resources` and `kubectl explain` perform *introspection*
+
+  (they communicate with the API server and obtain the exact type definitions)
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Type names
+
+- The most common resource names have three forms:
+
+  - singular (e.g. `node`, `service`, `deployment`)
+
+  - plural (e.g. `nodes`, `services`, `deployments`)
+
+  - short (e.g. `no`, `svc`, `deploy`)
+
+- Some resources do not have a short name
+
+- `Endpoints` only have a plural form
+
+  (because even a single `Endpoints` resource is actually a list of endpoints)
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Viewing details
+
+- We can use `kubectl get -o yaml` to see all available details
+
+- However, YAML output is often simultaneously too much and not enough
+
+- For instance, `kubectl get node node1 -o yaml` is:
+
+  - too much information (e.g.: list of images available on this node)
+
+  - not enough information (e.g.: doesn't show pods running on this node)
+
+  - difficult to read for a human operator
+
+- For a comprehensive overview, we can use `kubectl describe` instead
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## `kubectl describe`
+
+- `kubectl describe` needs a resource type and (optionally) a resource name
+
+- It is possible to provide a resource name *prefix*
+
+  (all matching objects will be displayed)
+
+- `kubectl describe` will retrieve some extra information about the resource
+
+.exercise[
+
+- Look at the information available for `node1` with one of the following commands:
+  ```bash
+  kubectl describe node/node1
+  kubectl describe node node1
+  ```
+
+]
+
+(We should notice a bunch of control plane pods.)
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Listing running containers
+
+- Containers are manipulated through *pods*
+
+- A pod is a group of containers:
+
+ - running together (on the same node)
+
+ - sharing resources (RAM, CPU; but also network, volumes)
+
+.exercise[
+
+- List pods on our cluster:
+  ```bash
+  kubectl get pods
+  ```
+
+]
+
+--
+
+*Where are the pods that we saw just a moment earlier?!?*
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Namespaces
+
+- Namespaces allow us to segregate resources
+
+.exercise[
+
+- List the namespaces on our cluster with one of these commands:
+  ```bash
+  kubectl get namespaces
+  kubectl get namespace
+  kubectl get ns
+  ```
+
+]
+
+--
+
+*You know what ... This `kube-system` thing looks suspicious.*
+
+*In fact, I'm pretty sure it showed up earlier, when we did:*
+
+`kubectl describe node node1`
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Accessing namespaces
+
+- By default, `kubectl` uses the `default` namespace
+
+- We can see resources in all namespaces with `--all-namespaces`
+
+.exercise[
+
+- List the pods in all namespaces:
+  ```bash
+  kubectl get pods --all-namespaces
+  ```
+
+- Since Kubernetes 1.14, we can also use `-A` as a shorter version:
+  ```bash
+  kubectl get pods -A
+  ```
+
+]
+
+*Here are our system pods!*
+
+
+## Scoping another namespace
+
+- We can also look at a different namespace (other than `default`)
+
+.exercise[
+
+- List only the pods in the `kube-system` namespace:
+  ```bash
+  kubectl get pods --namespace=kube-system
+  kubectl get pods -n kube-system
+  ```
+
+]
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Namespaces and other `kubectl` commands
+
+- We can use `-n`/`--namespace` with almost every `kubectl` command
+
+- Example:
+
+  - `kubectl create --namespace=X` to create something in namespace X
+
+- We can use `-A`/`--all-namespaces` with most commands that manipulate multiple objects
+
+- Examples:
+
+  - `kubectl delete` can delete resources across multiple namespaces
+
+  - `kubectl label` can add/remove/update labels across multiple namespaces
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+
+## Services
+
+- A *service* is a stable endpoint to connect to "something"
+
+  (In the initial proposal, they were called "portals")
+
+.exercise[
+
+- List the services on our cluster with one of these commands:
+  ```bash
+  kubectl get services
+  kubectl get svc
+  ```
+
+]
+
+--
+
+There is already one service on our cluster: the Kubernetes API itself.
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## ClusterIP services
+
+- A `ClusterIP` service is internal, available from the cluster only
+
+- This is useful for introspection from within containers
+
+.exercise[
+
+- Try to connect to the API:
+  ```bash
+  curl -k https://`10.96.0.1`
+  ```
+
+  - `-k` is used to skip certificate verification
+
+  - Make sure to replace 10.96.0.1 with the CLUSTER-IP shown by `kubectl get svc`
+
+]
+
+The command above should either time out, or show an authentication error. Why?
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+## Time out
+
+- Connections to ClusterIP services only work *from within the cluster*
+
+- If we are outside the cluster, the `curl` command will probably time out
+
+  (Because the IP address, e.g. 10.96.0.1, isn't routed properly outside the cluster)
+
+- This is the case with most "real" Kubernetes clusters
+
+- To try the connection from within the cluster, we can use [shpod](https://github.com/jpetazzo/shpod)
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+
+???
+
+:EN:- Getting started with kubectl
+:FR:- Se familiariser avec kubectl
+
+.debug[[k8s/kubectlget.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlget.md)]
+---
+
+class: pic
+
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
+
+---
+
+name: toc-running-our-first-containers-on-kubernetes
+class: title
+
+ Running our first containers on Kubernetes
+
+.nav[
+[Previous section](#toc-first-contact-with-kubectl)
+|
+[Back to table of contents](#toc-module-1)
+|
+[Next section](#toc-declarative-vs-imperative)
+]
+
+.debug[(automatically generated title slide)]
+
+---
+# Running our first containers on Kubernetes
+
+- First things first: we cannot run a container
+
+--
+
+- We are going to run a pod, and in that pod there will be a single container
+
+--
+
+- In that container in the pod, we are going to run a simple `ping` command
+
+--
+
+- Sounds simple enough, right?
+
+--
+
+- Except ... that the `kubectl run` command changed in Kubernetes 1.18!
+
+- We'll explain what has changed, and why
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Starting a simple pod with `kubectl run`
+
+- `kubectl run` is convenient to start a single pod
+
+- We need to specify at least a *name* and the image we want to use
+
+- Optionally, we can specify the command to run in the pod
+
+.exercise[
+
+- Let's ping the address of `localhost`, the loopback interface:
+  ```bash
+  kubectl run pingpong --image alpine ping 127.0.0.1
+  ```
+
+<!-- ```hide kubectl wait pod --selector=run=pingpong --for condition=ready``` -->
+
+]
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## What do we see?
+
+- In Kubernetes 1.18+, the output tells us that a Pod is created:
+  ```
+  pod/pingpong created
+  ```
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Show me all you got!
+
+- What resources were created by `kubectl run`?
+
+.exercise[
+
+- Let's ask Kubernetes to show us *all* the resources:
+  ```bash
+  kubectl get all
+  ```
+
+]
+
+Note: `kubectl get all` is a lie. It doesn't show everything.
+
+(But it shows a lot of "usual suspects", i.e. commonly used resources.)
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## The situation with Kubernetes 1.18+
+
+```
+NAME           READY   STATUS    RESTARTS   AGE
+pod/pingpong   1/1     Running   0          9s
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   3h30m
+```
+
+We wanted a pod, we got a pod, named `pingpong`. Great!
+
+(We can ignore `service/kubernetes`, it was already there before.)
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+
+## Pod
+
+- Can have one or multiple containers
+
+- Runs on a single node
+
+  (Pod cannot "straddle" multiple nodes)
+
+- Pods cannot be moved
+
+  (e.g. in case of node outage)
+
+- Pods cannot be scaled
+
+  (except by manually creating more Pods)
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+class: extra-details
+
+## Pod details
+
+- A Pod is not a process; it's an environment for containers
+
+  - it cannot be "restarted"
+
+  - it cannot "crash"
+
+- The containers in a Pod can crash
+
+- They may or may not get restarted
+
+  (depending on Pod's restart policy)
+
+- If all containers exit successfully, the Pod ends in "Succeeded" phase
+
+- If some containers fail and don't get restarted, the Pod ends in "Failed" phase
+
+
+## Deployment
+
+- Deployments are used to roll out different Pods
+
+  (different image, command, environment variables, ...)
+
+- When we update a Deployment with a new Pod definition:
+
+  - a new Replica Set is created with the new Pod definition
+
+  - that new Replica Set is progressively scaled up
+
+  - meanwhile, the old Replica Set(s) is(are) scaled down
+
+- This is a *rolling update*, minimizing application downtime
+
+- When we scale up/down a Deployment, it scales up/down its Replica Set
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## `kubectl run` through the ages
+
+- When we want to run an app on Kubernetes, we *generally* want a Deployment
+
+- Up to Kubernetes 1.17, `kubectl run` created a Deployment
+
+- From Kubernetes 1.18, `kubectl run` creates a Pod
+
+  - other kinds of resources can still be created with `kubectl create`
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Creating a Deployment the proper way
+
+- Let's destroy that `pingpong` app that we created
+
+- Then we will use `kubectl create deployment` to re-create it
+
+.exercise[
+
+- On Kubernetes 1.18+, delete the Pod named `pingpong`:
+  ```bash
+  kubectl delete pod pingpong
+  ```
+
+- On Kubernetes 1.17-, delete the Deployment named `pingpong`:
+  ```bash
+  kubectl delete deployment pingpong
+  ```
+
+]
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Running `ping` in a Deployment
+
+<!-- ##VERSION## -->
+
+- When using `kubectl create deployment`, we cannot indicate the command to execute
+
+  (at least, not in Kubernetes 1.18; but that changed in Kubernetes 1.19)
+
+- We can:
+
+  - write a custom YAML manifest for our Deployment
+
+--
+
+  - (yeah right ... too soon!)
+
+--
+
+  - use an image that has the command to execute baked in
+
+  - (much easier!)
+
+--
+
+- We will use the image `jpetazzo/ping`
+
+  (it has a default command of `ping 127.0.0.1`)
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Creating a Deployment running `ping`
+
+- Let's create a Deployment named `pingpong`
+
+- It will use the image `jpetazzo/ping`
+
+.exercise[
+
+- Create the Deployment:
+  ```bash
+  kubectl create deployment pingpong --image=jpetazzo/ping
+  ```
+
+- Check the resources that were created:
+  ```bash
+  kubectl get all
+  ```
+
+<!-- ```hide kubectl wait pod --selector=app=pingpong --for condition=ready ``` -->
+
+]
+
+
+## Viewing container output
+
+- Let's use the `kubectl logs` command
+
+- We will pass either a *pod name*, or a *type/name*
+
+  (E.g. if we specify a deployment or replica set, it will get the first pod in it)
+
+- Unless specified otherwise, it will only show logs of the first container in the pod
+
+  (Good thing there's only one in ours!)
+
+.exercise[
+
+- View the result of our `ping` command:
+  ```bash
+  kubectl logs deploy/pingpong
+  ```
+
+]
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Streaming logs in real time
+
+- Just like `docker logs`, `kubectl logs` supports convenient options:
+
+  - `-f`/`--follow` to stream logs in real time (à la `tail -f`)
+
+  - `--tail` to indicate how many lines you want to see (from the end)
+
+  - `--since` to get logs only after a given timestamp
+
+.exercise[
+
+- View the latest logs of our `ping` command:
+  ```bash
+  kubectl logs deploy/pingpong --tail 1 --follow
+  ```
+
+- Stop it with Ctrl-C
+
+<!--
+```wait seq=3```
+```keys ^C```
+-->
+
+]
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Scaling our application
+
+- We can create additional copies of our container (I mean, our pod) with `kubectl scale`
+
+.exercise[
+
+- Scale our `pingpong` deployment:
+  ```bash
+  kubectl scale deploy/pingpong --replicas 3
+  ```
+
+- Note that this command does exactly the same thing:
+  ```bash
+  kubectl scale deployment pingpong --replicas 3
+  ```
+
+- Check that we now have multiple pods:
+  ```bash
+  kubectl get pods
+  ```
+
+]
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+
+## Streaming logs of multiple pods
+
+- What happens if we try `kubectl logs` now that we have multiple pods?
+
+.exercise[
+
+  ```bash
+  kubectl logs deploy/pingpong --tail 3
+  ```
+
+]
+
+`kubectl logs` will warn us that multiple pods were found.
+
+It is showing us only one of them.
+
+We'll see later how to address that shortcoming.
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## Resilience
+
+- The *deployment* `pingpong` watches its *replica set*
+
+- The *replica set* ensures that the right number of *pods* are running
+
+- What happens if pods disappear?
+
+.exercise[
+
+- In a separate window, watch the list of pods:
+  ```bash
+  watch kubectl get pods
+  ```
+
+<!--
+```wait Every 2.0s```
+```tmux split-pane -v```
+-->
+
+- Destroy the pod currently shown by `kubectl logs`:
+  ```
+  kubectl delete pod pingpong-xxxxxxxxxx-yyyyy
+  ```
+
+<!--
+```tmux select-pane -t 0```
+```copy pingpong-[^-]*-.....```
+```tmux last-pane```
+```keys kubectl delete pod ```
+```paste```
+```key ^J```
+```check```
+```key ^D```
+```key ^C```
+-->
+
+]
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+## What happened?
+
+- `kubectl delete pod` terminates the pod gracefully
+
+  (sending it the TERM signal and waiting for it to shutdown)
+
+- As soon as the pod is in "Terminating" state, the Replica Set replaces it
+
+- But we can still see the output of the "Terminating" pod in `kubectl logs`
+
+- Until 30 seconds later, when the grace period expires
+
+- The pod is then killed, and `kubectl logs` exits
+
+???
+
+:EN:- Running pods and deployments
+:FR:- Créer un pod et un déploiement
+
+.debug[[k8s/kubectl-run.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectl-run.md)]
+---
+
+class: pic
+
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
+
+---
+
+name: toc-declarative-vs-imperative
+class: title
+
+ Declarative vs imperative
+
+.nav[
+[Previous section](#toc-running-our-first-containers-on-kubernetes)
+|
+[Back to table of contents](#toc-module-2)
+|
+[Next section](#toc-exposing-containers)
+]
+
+.debug[(automatically generated title slide)]
+
+---
+# Declarative vs imperative
+
+- Our container orchestrator puts a very strong emphasis on being *declarative*
+
+- Declarative:
+
+  *I would like a cup of tea.*
+
+- Imperative:
+
+  *Boil some water. Pour it in a teapot. Add tea leaves. Steep for a while. Serve in a cup.*
+
+--
+
+- Declarative seems simpler at first ... 
+
+--
+
+- ... As long as you know how to brew tea
+
+.debug[[shared/declarative.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/declarative.md)]
+---
+
+## Declarative vs imperative
+
+- What declarative would really be:
+
+  *I want a cup of tea, obtained by pouring an infusion¹ of tea leaves in a cup.*
+
+--
+
+  *¹An infusion is obtained by letting the object steep a few minutes in hot² water.*
+
+--
+
+  *²Hot liquid is obtained by pouring it in an appropriate container³ and setting it on a stove.*
+
+--
+
+  *³Ah, finally, containers! Something we know about. Let's get to work, shall we?*
+
+--
+
+.footnote[Did you know there was an [ISO standard](https://en.wikipedia.org/wiki/ISO_3103)
+specifying how to brew tea?]
+
+.debug[[shared/declarative.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/declarative.md)]
+---
+
+## Declarative vs imperative
+
+- Imperative systems:
+
+  - simpler
+
+  - if a task is interrupted, we have to restart from scratch
+
+- Declarative systems:
+
+  - if a task is interrupted (or if we show up to the party half-way through),
+    we can figure out what's missing and do only what's necessary
+
+  - we need to be able to *observe* the system
+
+  - ... and compute a "diff" between *what we have* and *what we want*
+
+.debug[[shared/declarative.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/declarative.md)]
+---
+## Declarative vs imperative in Kubernetes
+
+- With Kubernetes, we cannot say: "run this container"
+
+- All we can do is write a *spec* and push it to the API server
+
+  (by creating a resource like e.g. a Pod or a Deployment)
+
+- The API server will validate that spec (and reject it if it's invalid)
+
+- Then it will store it in etcd
+
+- A *controller* will "notice" that spec and act upon it
+
+.debug[[k8s/declarative.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/declarative.md)]
+---
+
+## Reconciling state
+
+- Watch for the `spec` fields in the YAML files later!
+
+- The *spec* describes *how we want the thing to be*
+
+- Kubernetes will *reconcile* the current state with the spec
+  <br/>(technically, this is done by a number of *controllers*)
+
+- When we want to change some resource, we update the *spec*
+
+- Kubernetes will then *converge* that resource
+
+???
+
+:EN:- Declarative vs imperative models
+:FR:- Modèles déclaratifs et impératifs
+
+.debug[[k8s/declarative.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/declarative.md)]
+---
+## 19,000 words
+
+They say, "a picture is worth one thousand words."
+
+The following 19 slides show what really happens when we run:
+
+```bash
+kubectl create deployment web --image=nginx
+```
+
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/01.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/02.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/03.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/04.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/05.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/06.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/07.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/08.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/09.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/10.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/11.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/12.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/13.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/14.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/15.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/16.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/17.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/18.svg)
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+class: pic
+![](images/kubectl-create-deployment-slideshow/19.svg)
+
+.debug[[k8s/deploymentslideshow.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/deploymentslideshow.md)]
+---
+
+class: pic
+
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
+
+---
+
+name: toc-exposing-containers
+class: title
+
+ Exposing containers
+
+.nav[
+[Previous section](#toc-declarative-vs-imperative)
+|
+[Back to table of contents](#toc-module-2)
+|
+[Next section](#toc-deploying-with-yaml)
+]
+
+.debug[(automatically generated title slide)]
+
+---
+# Exposing containers
+
+- We can connect to our pods using their IP address
+
+- Then we need to figure out a lot of things:
+
+  - how do we look up the IP address of the pod(s)?
+
+  - how do we connect from outside the cluster?
+
+  - how do we load balance traffic?
+
+  - what if a pod fails?
+
+- Kubernetes has a resource type named *Service*
+
+- Services address all these questions!
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## Services in a nutshell
+
+- Services give us a *stable endpoint* to connect to a pod or a group of pods
+
+- An easy way to create a service is to use `kubectl expose`
+
+- If we have a deployment named `my-little-deploy`, we can run:
+
+  `kubectl expose deployment my-little-deploy --port=80`
+
+  ... and this will create a service with the same name (`my-little-deploy`)
+
+- Services are automatically added to an internal DNS zone
+
+  (in the example above, our code can now connect to http://my-little-deploy/)
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## Advantages of services
+
+- We don't need to look up the IP address of the pod(s)
+
+  (we resolve the IP address of the service using DNS)
+
+- There are multiple service types; some of them allow external traffic
+
+  (e.g. `LoadBalancer` and `NodePort`)
+
+- Services provide load balancing
+
+  (for both internal and external traffic)
+
+- Service addresses are independent from pods' addresses
+
+  (when a pod fails, the service seamlessly sends traffic to its replacement)
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## Many kinds and flavors of service
+
+- There are different types of services:
+
+  `ClusterIP`, `NodePort`, `LoadBalancer`, `ExternalName`
+
+- There are also *headless services*
+
+- Services can also have optional *external IPs*
+
+- There is also another resource type called *Ingress*
+
+  (specifically for HTTP services)
+
+- Wow, that's a lot! Let's start with the basics ...
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## `ClusterIP`
+
+- It's the default service type
+
+- A virtual IP address is allocated for the service
+
+  (in an internal, private range; e.g. 10.96.0.0/12)
+
+- This IP address is reachable only from within the cluster (nodes and pods)
+
+- Our code can connect to the service using the original port number
+
+- Perfect for internal communication, within the cluster
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## `LoadBalancer`
+
+- An external load balancer is allocated for the service
+
+  (typically a cloud load balancer, e.g. ELB on AWS, GLB on GCE ...)
+
+- This is available only when the underlying infrastructure provides some kind of
+  "load balancer as a service"
+
+- Each service of that type will typically cost a little bit of money
+
+  (e.g. a few cents per hour on AWS or GCE)
+
+- Ideally, traffic would flow directly from the load balancer to the pods
+
+- In practice, it will often flow through a `NodePort` first
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## `NodePort`
+
+- A port number is allocated for the service
+
+  (by default, in the 30000-32767 range)
+
+- That port is made available *on all our nodes* and anybody can connect to it
+
+  (we can connect to any node on that port to reach the service)
+
+- Our code needs to be changed to connect to that new port number
+
+- Under the hood: `kube-proxy` sets up a bunch of `iptables` rules on our nodes
+
+- Sometimes, it's the only available option for external traffic
+
+  (e.g. most clusters deployed with kubeadm or on-premises)
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## Running containers with open ports
+
+- Since `ping` doesn't have anything to connect to, we'll have to run something else
+
+- We could use the `nginx` official image, but ...
+
+  ... we wouldn't be able to tell the backends from each other!
+
+- We are going to use `jpetazzo/httpenv`, a tiny HTTP server written in Go
+
+- `jpetazzo/httpenv` listens on port 8888
+
+- It serves its environment variables in JSON format
+
+- The environment variables will include `HOSTNAME`, which will be the pod name
+
+  (and therefore, will be different on each backend)
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## Creating a deployment for our HTTP server
+
+- We will create a deployment with `kubectl create deployment`
+
+- Then we will scale it with `kubectl scale`
+
+.exercise[
+
+- In another window, watch the pods (to see when they are created):
+  ```bash
+  kubectl get pods -w
+  ```
+
+<!--
+```wait NAME```
+```tmux split-pane -h```
+-->
+
+- Create a deployment for this very lightweight HTTP server:
+  ```bash
+  kubectl create deployment httpenv --image=jpetazzo/httpenv
+  ```
+
+- Scale it to 10 replicas:
+  ```bash
+  kubectl scale deployment httpenv --replicas=10
+  ```
+
+]
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+## Exposing our deployment
+
+- We'll create a default `ClusterIP` service
+
+.exercise[
+
+- Expose the HTTP port of our server:
+  ```bash
+  kubectl expose deployment httpenv --port 8888 --type=NodePort
+  ```
+
+- Look up which `NodePort` was allocated:
+  ```bash
+  kubectl describe service httpenv
+  ```
+
+And try to access to [http://146.59.242.188:NODE_PORT](http://146.59.242.188:NODE_PORT), or any IP of a node
+
+]
+
+
+
+???
+
+:EN:- Service discovery and load balancing
+:EN:- Accessing pods through services
+:EN:- Service types: ClusterIP, NodePort, LoadBalancer
+
+:FR:- Exposer un service
+:FR:- Différents types de services : ClusterIP, NodePort, LoadBalancer
+:FR:- Utiliser CoreDNS pour la *service discovery*
+
+.debug[[k8s/kubectlexpose.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/kubectlexpose.md)]
+---
+
+class: pic
+
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
+
+---
+
+name: toc-deploying-with-yaml
+class: title
+
+ Deploying with YAML
+
+.nav[
+[Previous section](#toc-exposing-containers)
+|
+[Back to table of contents](#toc-module-2)
+|
+[Next section](#toc-links-and-resources)
+]
+
+.debug[(automatically generated title slide)]
+
+---
+# Deploying with YAML
+
+- So far, we created resources with the following commands:
+
+  - `kubectl run`
+
+  - `kubectl create deployment`
+
+  - `kubectl expose`
+
+- We can also create resources directly with YAML manifests
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+## `kubectl apply` vs `create`
+
+- `kubectl create -f whatever.yaml`
+
+  - creates resources if they don't exist
+
+  - if resources already exist, don't alter them
+    <br/>(and display error message)
+
+- `kubectl apply -f whatever.yaml`
+
+  - creates resources if they don't exist
+
+  - if resources already exist, update them
+    <br/>(to match the definition provided by the YAML file)
+
+  - stores the manifest as an *annotation* in the resource
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+## Creating multiple resources
+
+- The manifest can contain multiple resources separated by `---`
+
+```yaml
+ kind: ...
+ apiVersion: ...
+ metadata: ...
+   name: ...
+ ...
+ ---
+ kind: ...
+ apiVersion: ...
+ metadata: ...
+   name: ...
+ ...
+```
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+## Creating multiple resources
+
+- The manifest can also contain a list of resources
+
+```yaml
+ apiVersion: v1
+ kind: List
+ items:
+ - kind: ...
+   apiVersion: ...
+   ...
+ - kind: ...
+   apiVersion: ...
+   ...
+```
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+## Deploying nginx with YAML
+
+You can find an example [here](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/#creating-and-exploring-an-nginx-deployment).
+
+.exercise[
+
+- Deploy or redeploy nginx:
+  ```bash
+  wget https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/deployment.yaml
+
+  cat deployment.yaml
+
+  # view the deployment
+  kubectl describe deployment nginx-deployment
+
+  ```
+
+]
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+## Deleting resources
+
+- We can also use a YAML file to *delete* resources
+
+- `kubectl delete -f ...` will delete all the resources mentioned in a YAML file
+
+  (useful to clean up everything that was created by `kubectl apply -f ...`)
+
+- The definitions of the resources don't matter
+
+  (just their `kind`, `apiVersion`, and `name`)
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+## Pruning¹ resources
+
+- We can also tell `kubectl` to remove old resources
+
+- This is done with `kubectl apply -f ... --prune`
+
+- It will remove resources that don't exist in the YAML file(s)
+
+- But only if they were created with `kubectl apply` in the first place
+
+  (technically, if they have an annotation `kubectl.kubernetes.io/last-applied-configuration`)
+
+.footnote[¹If English is not your first language: *to prune* means to remove dead or overgrown branches in a tree, to help it to grow.]
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+## YAML as source of truth
+
+- Imagine the following workflow:
+
+  - do not use `kubectl run`, `kubectl create deployment`, `kubectl expose` ...
+
+  - define everything with YAML
+
+  - `kubectl apply -f ... --prune --all` that YAML
+
+  - keep that YAML under version control
+
+  - enforce all changes to go through that YAML (e.g. with pull requests)
+
+- Our version control system now has a full history of what we deploy
+
+- Compares to "Infrastructure-as-Code", but for app deployments
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+class: extra-details
+
+## Specifying the namespace
+
+- When creating resources from YAML manifests, the namespace is optional
+
+- If we specify a namespace:
+
+  - resources are created in the specified namespace
+
+  - this is typical for things deployed only once per cluster
+
+  - example: system components, cluster add-ons ...
+
+- If we don't specify a namespace:
+
+  - resources are created in the current namespace
+
+  - this is typical for things that may be deployed multiple times
+
+  - example: applications (production, staging, feature branches ...)
+
+???
+
+:EN:- Deploying with YAML manifests
+:FR:- Déployer avec des *manifests* YAML
+
+.debug[[k8s/yamldeploy.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/yamldeploy.md)]
+---
+
+class: pic
+
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
+
+---
+
+name: toc-links-and-resources
+class: title
+
+ Links and resources
+
+.nav[
+[Previous section](#toc-deploying-with-yaml)
+|
+[Back to table of contents](#toc-module-3)
+|
+[Next section](#toc-)
+]
+
+.debug[(automatically generated title slide)]
+
+---
+# Links and resources
+
+All things Kubernetes:
+
+- [Kubernetes Community](https://kubernetes.io/community/) - Slack, Google Groups, meetups
+- [Kubernetes on StackOverflow](https://stackoverflow.com/questions/tagged/kubernetes)
+- [Play With Kubernetes Hands-On Labs](https://medium.com/@marcosnils/introducing-pwk-play-with-k8s-159fcfeb787b)
+
+All things Docker:
+
+- [Docker documentation](http://docs.docker.com/)
+- [Docker Hub](https://hub.docker.com)
+- [Docker on StackOverflow](https://stackoverflow.com/questions/tagged/docker)
+- [Play With Docker Hands-On Labs](http://training.play-with-docker.com/)
+
+Everything else:
+
+- [Local meetups](https://www.meetup.com/)
+
+.footnote[These slides (and future updates) are on → http://container.training/]
+
+.debug[[k8s/links.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/links.md)]
+---
+class: title, self-paced
+
+Thank you!
+
+.debug[[shared/thankyou.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/thankyou.md)]
+---
+
+class: title, in-person
+
+That's all, folks! <br/> Questions?
+
+![end](images/end.jpg)
+
+.debug[[shared/thankyou.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/thankyou.md)]</textarea>
+    <script src="remark.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        ratio: '16:9',
+        highlightSpans: true,
+        slideNumberFormat: '%current%/%total%',
+        excludedClasses: ["self-paced"]
+      });
+    </script>
+    
+    <!-- 
+    These two scripts will be available only when loading the
+    content using the pub/sub server. Otherwise, they'll just
+    404 and that's OK.
+    -->
+    <script src="/socket.io/socket.io.js">
+    </script>
+    <script src="/remote.js">
+    </script>
+
+  </body>
+</html>
