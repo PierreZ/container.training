@@ -818,8 +818,8 @@ test_vm() {
         "docker-machine version" \
         "docker images" \
         "docker ps" \
-        "curl --silent localhost:55555" \
-        "sudo ls -la /mnt/ | grep docker" \
+        "docker run --rm ubuntu date" \
+        "kubectl get nodes" \
         "env" \
         "ls -la /home/docker/.ssh"; do
         sep "$cmd"

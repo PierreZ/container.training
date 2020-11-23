@@ -25,4 +25,5 @@ docker_user_password: training-yncrea-2020
 steps:
   - deploy
   - kube
+  - test
   - cards

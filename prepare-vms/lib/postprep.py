@@ -167,8 +167,8 @@ while addresses:
     print(cluster)
 
     mynode = cluster.index(ipv4) + 1
-    system("echo {}{} | sudo tee /etc/hostname".format(CLUSTER_PREFIX, mynode))
-    system("sudo hostname {}{}".format(CLUSTER_PREFIX, mynode))
+    # system("echo {}{} | sudo tee /etc/hostname".format(CLUSTER_PREFIX, mynode))
+    # system("sudo hostname {}{}".format(CLUSTER_PREFIX, mynode))
     system("sudo -u docker mkdir -p /home/docker/.ssh")
     system("sudo -u docker touch /home/docker/.ssh/authorized_keys")
 
