@@ -2,7 +2,7 @@ variable "prefix" {
   type = "string"
 }
 
-variable "count" {
+variable "vcount" {
   type = "string"
 }
 

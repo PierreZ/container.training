@@ -4,6 +4,7 @@ infra_start() {
 	cp terraform/*.tf tags/$TAG
 	(
 		cd tags/$TAG
+		terraform 0.13upgrade -yes
 		terraform init
 		echo prefix = \"$TAG\" >> terraform.tfvars
 		echo count = \"$COUNT\" >> terraform.tfvars

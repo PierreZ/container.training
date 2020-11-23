@@ -100,11 +100,11 @@ _cmd_deploy() {
     pssh -I tee /tmp/settings.yaml <tags/$TAG/settings.yaml
     pssh "
     sudo apt-get update &&
-    sudo apt-get install -y python python-yaml"
+    sudo apt-get install -y python3 python3-yaml"
 
     # Copy postprep.py to the remote machines, and execute it, feeding it the list of IP addresses
     pssh -I tee /tmp/postprep.py <lib/postprep.py
-    pssh --timeout 900 --send-input "python /tmp/postprep.py >>/tmp/pp.out 2>>/tmp/pp.err" <tags/$TAG/ips.txt
+    pssh --timeout 900 --send-input "python3 /tmp/postprep.py >>/tmp/pp.out 2>>/tmp/pp.err" <tags/$TAG/ips.txt
 
     # Install docker-prompt script
     pssh -I sudo tee /usr/local/bin/docker-prompt <lib/docker-prompt
@@ -203,48 +203,19 @@ _cmd_kube() {
     sudo tee /etc/apt/sources.list.d/kubernetes.list"
     pssh --timeout 200 "
     sudo apt-get update -q &&
-    sudo apt-get install -qy kubelet$EXTRA_APTGET kubeadm$EXTRA_APTGET kubectl$EXTRA_APTGET &&
+    sudo apt-get install -qy kubectl$EXTRA_APTGET &&
     kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl &&
     echo 'alias k=kubectl' | sudo tee /etc/bash_completion.d/k &&
     echo 'complete -F __start_kubectl k' | sudo tee -a /etc/bash_completion.d/k"
 
-    # Initialize kube master
-    pssh --timeout 200 "
-    if i_am_first_node && [ ! -f /etc/kubernetes/admin.conf ]; then
-        kubeadm token generate > /tmp/token &&
-	sudo kubeadm init $EXTRA_KUBEADM --token \$(cat /tmp/token) --apiserver-cert-extra-sans \$(cat /tmp/ipv4) --ignore-preflight-errors=NumCPU
-    fi"
-
-    # Put kubeconfig in ubuntu's and docker's accounts
-    pssh "
-    if i_am_first_node; then
-        sudo mkdir -p \$HOME/.kube /home/docker/.kube &&
-        sudo cp /etc/kubernetes/admin.conf \$HOME/.kube/config &&
-        sudo cp /etc/kubernetes/admin.conf /home/docker/.kube/config &&
-        sudo chown -R \$(id -u) \$HOME/.kube &&
-        sudo chown -R docker /home/docker/.kube
-    fi"
-
-    # Install weave as the pod network
-    pssh "
-    if i_am_first_node; then
-        kubever=\$(kubectl version | base64 | tr -d '\n') &&
-        kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version=\$kubever
-    fi"
-
-    # Join the other nodes to the cluster
-    pssh --timeout 200 "
-    if ! i_am_first_node && [ ! -f /etc/kubernetes/kubelet.conf ]; then
-        FIRSTNODE=\$(cat /etc/name_of_first_node) &&
-        TOKEN=\$(ssh -o StrictHostKeyChecking=no \$FIRSTNODE cat /tmp/token) &&
-        sudo kubeadm join --discovery-token-unsafe-skip-ca-verification --token \$TOKEN \$FIRSTNODE:6443
-    fi"
-
-    # Install metrics server
-    pssh "
-    if i_am_first_node; then
-	kubectl apply -f https://raw.githubusercontent.com/jpetazzo/container.training/master/k8s/metrics-server.yaml
-    fi"
+    pssh -I tee /tmp/kubeconfig-admin.yml </home/pierrez/Downloads/kubeconfig.yml
+    pssh -I tee /tmp/generate.sh <lib/generate.sh
+    pssh sudo mkdir -p /home/docker/.kube
+    pssh sudo chmod +x /tmp/generate.sh
+    pssh /tmp/generate.sh
+    pssh sudo mv /tmp/kubeconfig.yaml /home/docker/.kube/config
+    pssh sudo chown -R docker:docker /home/docker/.kube
+    pssh rm /tmp/kubeconfig-admin.yml
 }
 
 _cmd kubetools "Install a bunch of CLI tools for Kubernetes"
