@@ -29,5 +29,12 @@ content:
   - k8s/kubectlexpose.md
   - k8s/yamldeploy.md
 -
+  - shared/sampleapp.md
+  - k8s/ourapponkube.md
+  - k8s/scalingdockercoins.md
+  - shared/hastyconclusions.md
+  - k8s/daemonset.md
+  - k8s/dryrun.md
+-
   - k8s/links.md
   - shared/thankyou.md

@@ -29,401 +29,14 @@ Deploying and Scaling Microservices<br/>with Docker and Kubernetes<br/>
 
 .debug[
 ```
- D docs/Dockerfile
- D docs/README.md
- D docs/TODO
- D docs/_redirects
- D docs/appendcheck.py
- D docs/autopilot/autotest.py
- D docs/autopilot/gotoslide.js
- D docs/autopilot/package-lock.json
- D docs/autopilot/package.json
- D docs/autopilot/remote.js
- D docs/autopilot/requirements.txt
- D docs/autopilot/server.js
- D docs/autopilot/tmux-style.sh
- D docs/build.sh
- D docs/containers.yml
- D docs/containers.yml.html
- D docs/containers/Advanced_Dockerfiles.md
- D docs/containers/Ambassadors.md
- D docs/containers/Application_Configuration.md
- D docs/containers/Background_Containers.md
- D docs/containers/Building_Images_Interactively.md
- D docs/containers/Building_Images_With_Dockerfiles.md
- D docs/containers/Cmd_And_Entrypoint.md
- D docs/containers/Compose_For_Dev_Stacks.md
- D docs/containers/Connecting_Containers_With_Links.md
- D docs/containers/Container_Engines.md
- D docs/containers/Container_Network_Model.md
- D docs/containers/Container_Networking_Basics.md
- D docs/containers/Containers_From_Scratch.md
- D docs/containers/Copy_On_Write.md
- D docs/containers/Copying_Files_During_Build.md
- D docs/containers/Docker_History.md
- D docs/containers/Docker_Machine.md
- D docs/containers/Docker_Overview.md
- D docs/containers/Dockerfile_Tips.md
- D docs/containers/Ecosystem.md
- D docs/containers/Exercise_Composefile.md
- D docs/containers/Exercise_Dockerfile_Advanced.md
- D docs/containers/Exercise_Dockerfile_Basic.md
- D docs/containers/First_Containers.md
- D docs/containers/Getting_Inside.md
- D docs/containers/Init_Systems.md
- D docs/containers/Initial_Images.md
- D docs/containers/Installing_Docker.md
- D docs/containers/Labels.md
- D docs/containers/Local_Development_Workflow.md
- D docs/containers/Logging.md
- D docs/containers/Multi_Stage_Builds.md
- D docs/containers/Namespaces_Cgroups.md
- D docs/containers/Naming_And_Inspecting.md
- D docs/containers/Network_Drivers.md
- D docs/containers/Orchestration_Overview.md
- D docs/containers/Pods_Anatomy.md
- D docs/containers/Publishing_To_Docker_Hub.md
- D docs/containers/Resource_Limits.md
- D docs/containers/Start_And_Attach.md
- D docs/containers/Training_Environment.md
- D docs/containers/Windows_Containers.md
- D docs/containers/Working_With_Volumes.md
- D docs/containers/intro.md
- D docs/containers/links.md
- D docs/count-slides.py
- D docs/docker-compose.yaml
- D docs/find-non-ascii.sh
- D docs/fix-redirects.sh
- D docs/images/aj-containers.jpeg
- D docs/images/ambassador-diagram.odg
- D docs/images/ambassador-diagram.png
- D docs/images/api-request-lifecycle.png
- D docs/images/bell-curve.jpg
- D docs/images/binpacking-1d-1.gif
- D docs/images/binpacking-1d-2.gif
- D docs/images/binpacking-2d.gif
- D docs/images/binpacking-3d.gif
- D docs/images/blackbelt.png
- D docs/images/bridge1.png
- D docs/images/bridge2.png
- D docs/images/bridge3.png
- D docs/images/ci-cd-with-docker.png
- D docs/images/composeapp.png
- D docs/images/composeup.gif
- D docs/images/conductor.jpg
- D docs/images/container-background.jpg
- D docs/images/container-layers.jpg
- D docs/images/containers-as-lightweight-vms.png
- D docs/images/delay-hasher.png
- D docs/images/delay-rng.png
- D docs/images/demo.jpg
- D docs/images/docker-ce-ee-lifecycle.png
- D docs/images/docker-con-15-logo.svg
- D docs/images/docker-ecosystem-2015.png
- D docs/images/docker-engine-architecture.svg
- D docs/images/docker-service-create.svg
- D docs/images/dockercoins-2015.png
- D docs/images/dockercoins-diagram.svg
- D docs/images/dockercoins-diagram.xml
- D docs/images/dockercoins-multi-node.png
- D docs/images/dockercoins-single-node.png
- D docs/images/dockercoins.png
- D docs/images/dockerd-and-containerd.png
- D docs/images/dragons.jpg
- D docs/images/end.jpg
- D docs/images/entrypoint.jpg
- D docs/images/equations.png
- D docs/images/extra-details.png
- D docs/images/fu-face.jpg
- D docs/images/getting-inside.png
- D docs/images/grafana-add-graph.png
- D docs/images/grafana-add-source.png
- D docs/images/heroku-first-homepage.png
- D docs/images/hpa-v2-pa-latency.png
- D docs/images/hpa-v2-pa-pods.png
- D docs/images/ingress-lb.png
- D docs/images/ingress-routing-mesh.png
- D docs/images/k8s-arch1.png
- D docs/images/k8s-arch2.png
- D docs/images/k8s-arch3-thanks-weave.png
- D docs/images/k8s-arch4-thanks-luxas.png
- D docs/images/keyboard.png
- D docs/images/kibana.png
- D docs/images/kubectl-create-deployment-slideshow/01.svg
- D docs/images/kubectl-create-deployment-slideshow/02.svg
- D docs/images/kubectl-create-deployment-slideshow/03.svg
- D docs/images/kubectl-create-deployment-slideshow/04.svg
- D docs/images/kubectl-create-deployment-slideshow/05.svg
- D docs/images/kubectl-create-deployment-slideshow/06.svg
- D docs/images/kubectl-create-deployment-slideshow/07.svg
- D docs/images/kubectl-create-deployment-slideshow/08.svg
- D docs/images/kubectl-create-deployment-slideshow/09.svg
- D docs/images/kubectl-create-deployment-slideshow/10.svg
- D docs/images/kubectl-create-deployment-slideshow/11.svg
- D docs/images/kubectl-create-deployment-slideshow/12.svg
- D docs/images/kubectl-create-deployment-slideshow/13.svg
- D docs/images/kubectl-create-deployment-slideshow/14.svg
- D docs/images/kubectl-create-deployment-slideshow/15.svg
- D docs/images/kubectl-create-deployment-slideshow/16.svg
- D docs/images/kubectl-create-deployment-slideshow/17.svg
- D docs/images/kubectl-create-deployment-slideshow/18.svg
- D docs/images/kubectl-create-deployment-slideshow/19.svg
- D docs/images/kubernetes_pods.drawio
- D docs/images/kubernetes_pods.svg
- D docs/images/mario-red-shell.png
- D docs/images/pwd-icons.png
- D docs/images/registry-frontends.png
- D docs/images/service-discovery.png
- D docs/images/sharing-layers.jpg
- D docs/images/shipping-indsutry-results.png
- D docs/images/shipping-industry-problem.png
- D docs/images/shipping-industry-solution.png
- D docs/images/shipping-matrix-from-hell.png
- D docs/images/shipping-matrix-solved.png
- D docs/images/shipping-software-problem.png
- D docs/images/shipping-software-solution.png
- D docs/images/startrek-federation.jpg
- D docs/images/swarm-mode.svg
- D docs/images/swarm.png
- D docs/images/tangram.gif
- D docs/images/tesla.jpg
- D docs/images/tetris-1.png
- D docs/images/tetris-2.gif
- D docs/images/tetris-3.png
- D docs/images/title-advanced-dockerfiles.jpg
- D docs/images/title-ambassador.jpg
- D docs/images/title-background-containers.jpg
- D docs/images/title-building-docker-images-with-a-dockerfile.jpg
- D docs/images/title-connecting-containers-with-links.gif
- D docs/images/title-container-networking-basics.jpg
- D docs/images/title-copying-files-during-build.jpg
- D docs/images/title-installing-docker.jpg
- D docs/images/title-local-development-workflow-with-docker.jpg
- D docs/images/title-naming-and-inspecting-containers.jpg
- D docs/images/title-our-first-containers.jpg
- D docs/images/title-our-training-environment.jpg
- D docs/images/title-the-container-network-model.jpg
- D docs/images/title-understanding-docker-images.png
- D docs/images/title-working-with-volumes.jpg
- D docs/images/traffic-graph.png
- D docs/images/trainingwheels-error.png
- D docs/images/trainingwheels-ok.png
- D docs/images/trollface.png
- D docs/images/warning.png
- D docs/images/webapp-in-blue.png
- D docs/images/webapp-in-red.png
- D docs/images/welcome-to-nginx.png
- D docs/images/windows-containers.jpg
- D docs/images/you-get-a-cluster.jpg
- D docs/images/you-get-five-vms.jpg
- D docs/index.css
- D docs/index.html
- D docs/index.py
- D docs/index.yaml
- D docs/interstitials.txt
- D docs/intro-fullday.yml
- D docs/intro-fullday.yml.html
- D docs/intro-selfpaced.yml
- D docs/intro-selfpaced.yml.html
- D docs/intro-twodays.yml
- D docs/intro-twodays.yml.html
- D docs/k8s.html
- D docs/k8s/accessinternal.md
- D docs/k8s/admission.md
- D docs/k8s/apilb.md
- D docs/k8s/architecture.md
- D docs/k8s/authn-authz.md
- D docs/k8s/batch-jobs.md
- D docs/k8s/bootstrap.md
- D docs/k8s/build-with-docker.md
- D docs/k8s/build-with-kaniko.md
- D docs/k8s/buildshiprun-dockerhub.md
- D docs/k8s/buildshiprun-selfhosted.md
- D docs/k8s/cloud-controller-manager.md
- D docs/k8s/cluster-backup.md
- D docs/k8s/cluster-sizing.md
- D docs/k8s/cluster-upgrade.md
- D docs/k8s/cni.md
- D docs/k8s/concepts-k8s.md
- D docs/k8s/configuration.md
- D docs/k8s/control-plane-auth.md
- D docs/k8s/crd.md
- D docs/k8s/csr-api.md
- D docs/k8s/daemonset.md
- D docs/k8s/dashboard.md
- D docs/k8s/declarative.md
- D docs/k8s/deploymentslideshow.md
- D docs/k8s/dmuc.md
- D docs/k8s/dryrun.md
- D docs/k8s/eck.md
- D docs/k8s/exercise-configmap.md
- D docs/k8s/exercise-helm.md
- D docs/k8s/exercise-wordsmith.md
- D docs/k8s/exercise-yaml.md
- D docs/k8s/extending-api.md
- D docs/k8s/finalizers.md
- D docs/k8s/gitworkflows.md
- D docs/k8s/healthchecks-more.md
- D docs/k8s/healthchecks.md
- D docs/k8s/helm-chart-format.md
- D docs/k8s/helm-create-basic-chart.md
- D docs/k8s/helm-create-better-chart.md
- D docs/k8s/helm-intro.md
- D docs/k8s/helm-secrets.md
- D docs/k8s/horizontal-pod-autoscaler.md
- D docs/k8s/hpa-v2.md
- D docs/k8s/ingress-tls.md
- D docs/k8s/ingress.md
- D docs/k8s/interco.md
- D docs/k8s/intro.md
- D docs/k8s/kubectl-logs.md
- D docs/k8s/kubectl-run.md
- D docs/k8s/kubectlexpose.md
- D docs/k8s/kubectlget.md
- D docs/k8s/kubectlproxy.md
- D docs/k8s/kubectlscale.md
- D docs/k8s/kubenet.md
- D docs/k8s/kubercoins.md
- D docs/k8s/kustomize.md
- D docs/k8s/kyverno.md
- D docs/k8s/labels-annotations.md
- D docs/k8s/lastwords.md
- D docs/k8s/links-bridget.md
- D docs/k8s/links.md
- D docs/k8s/local-persistent-volumes.md
- D docs/k8s/localkubeconfig.md
- D docs/k8s/logs-centralized.md
- D docs/k8s/logs-cli.md
- D docs/k8s/metrics-server.md
- D docs/k8s/multinode.md
- D docs/k8s/namespaces.md
- D docs/k8s/netpol.md
- D docs/k8s/openid-connect.md
- D docs/k8s/operators-design.md
- D docs/k8s/operators.md
- D docs/k8s/ourapponkube.md
- D docs/k8s/owners-and-dependents.md
- D docs/k8s/podsecuritypolicy.md
- D docs/k8s/portworx.md
- D docs/k8s/prereqs-admin.md
- D docs/k8s/prometheus.md
- D docs/k8s/record.md
- D docs/k8s/resource-limits.md
- D docs/k8s/rollout.md
- D docs/k8s/scalingdockercoins.md
- D docs/k8s/setup-devel.md
- D docs/k8s/setup-managed.md
- D docs/k8s/setup-overview.md
- D docs/k8s/setup-selfhosted.md
- D docs/k8s/shippingimages.md
- D docs/k8s/statefulsets.md
- D docs/k8s/staticpods.md
- D docs/k8s/user-cert.md
- D docs/k8s/versions-k8s.md
- D docs/k8s/volumes.md
- D docs/k8s/whatsnext.md
- D docs/k8s/yamldeploy.md
- D docs/kadm-fullday.yml
- D docs/kadm-fullday.yml.html
- D docs/kadm-twodays.yml
- D docs/kadm-twodays.yml.html
- D docs/kube-fullday.yml
- D docs/kube-fullday.yml.html
- D docs/kube-halfday.yml
- D docs/kube-halfday.yml.html
- D docs/kube-selfpaced.yml
- D docs/kube-selfpaced.yml.html
- D docs/kube-twodays.yml
- D docs/kube-twodays.yml.html
- D docs/kubernetes.yml
- D docs/kubernetes.yml.html
- D docs/logistics-bridget.md
- D docs/logistics-online.md
- D docs/logistics-template.md
- D docs/logistics.md
- D docs/markmaker.py
- D docs/past.html
- D docs/qrcode.html
- D docs/remark-0.14.min.js
- D docs/remark.min.js
- D docs/rename.sh
- D docs/requirements.txt
- D docs/runtime.txt
- D docs/shared/about-slides.md
- D docs/shared/chat-room-im.md
- D docs/shared/chat-room-twitch.md
- D docs/shared/chat-room-zoom-meeting.md
- D docs/shared/chat-room-zoom-webinar.md
- D docs/shared/composedown.md
- D docs/shared/composescale.md
- D docs/shared/connecting.md
- D docs/shared/declarative.md
- D docs/shared/hastyconclusions.md
- D docs/shared/prereqs.md
- D docs/shared/pwd.md
- D docs/shared/sampleapp.md
- D docs/shared/thankyou.md
- D docs/shared/title.md
- D docs/shared/toc.md
- D docs/shared/webssh.md
- D docs/slidechecker.js
- D docs/slides.zip
- D docs/swarm-fullday.yml
- D docs/swarm-fullday.yml.html
- D docs/swarm-halfday.yml
- D docs/swarm-halfday.yml.html
- D docs/swarm-selfpaced.yml
- D docs/swarm-selfpaced.yml.html
- D docs/swarm-video.yml
- D docs/swarm-video.yml.html
- D docs/swarm/apiscope.md
- D docs/swarm/btp-manual.md
- D docs/swarm/cicd.md
- D docs/swarm/creatingswarm.md
- D docs/swarm/encryptionatrest.md
- D docs/swarm/extratips.md
- D docs/swarm/firstservice.md
- D docs/swarm/gui.md
- D docs/swarm/healthchecks.md
- D docs/swarm/hostingregistry.md
- D docs/swarm/intro.md
- D docs/swarm/ipsec.md
- D docs/swarm/leastprivilege.md
- D docs/swarm/links.md
- D docs/swarm/logging.md
- D docs/swarm/machine.md
- D docs/swarm/metrics.md
- D docs/swarm/morenodes.md
- D docs/swarm/namespaces.md
- D docs/swarm/netshoot.md
- D docs/swarm/nodeinfo.md
- D docs/swarm/operatingswarm.md
- D docs/swarm/ourapponswarm.md
- D docs/swarm/pickregistry.md
- D docs/swarm/rollingupdates.md
- D docs/swarm/secrets.md
- D docs/swarm/security.md
- D docs/swarm/stacks.md
- D docs/swarm/stateful.md
- D docs/swarm/swarmkit.md
- D docs/swarm/swarmmode.md
- D docs/swarm/swarmnbt.md
- D docs/swarm/swarmready.md
- D docs/swarm/swarmtools.md
- D docs/swarm/testingregistry.md
- D docs/swarm/updatingservices.md
- D docs/swarm/versions.md
- D docs/workshop.css
- D docs/workshop.html
- D docs/yncrea.yml.html
- D slides/containers.yml
- D slides/kubernetes.yml
-?? slides/docker.yml
-?? slides/k8s.yml
+ M slides/k8s.yml
+ M slides/k8s/ourapponkube.md
+ M slides/k8s/scalingdockercoins.md
+ M slides/kube-selfpaced.yml
 
 ```
 
-These slides have been built from commit: eb3f64d
+These slides have been built from commit: b4a795a
 
 
 [shared/title.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/shared/title.md)]
@@ -642,8 +255,6 @@ name: toc-module-4
 - [Daemon sets](#toc-daemon-sets)
 
 - [Labels and selectors](#toc-labels-and-selectors)
-
-- [Authoring YAML](#toc-authoring-yaml)
 
 .debug[(auto-generated TOC)]
 ---
@@ -4832,27 +4443,6 @@ class: title
 .debug[[k8s/ourapponkube.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/ourapponkube.md)]
 ---
 
-class: extra-details
-
-## Deploying other images
-
-- If we wanted to deploy images from another registry ...
-
-- ... Or with a different tag ...
-
-- ... We could use the following snippet:
-
-```bash
-  REGISTRY=dockercoins
-  TAG=v0.1
-  for SERVICE in hasher rng webui worker; do
-    kubectl create deployment $SERVICE --image=$REGISTRY/$SERVICE:$TAG
-  done
-```
-
-.debug[[k8s/ourapponkube.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/ourapponkube.md)]
----
-
 ## Is this working?
 
 - After waiting for the deployment to complete, let's look at the logs!
@@ -4973,7 +4563,7 @@ We should now see the `worker`, well, working happily.
 
 --
 
-Yes, this may take a little while to update. *(Narrator: it was DNS.)*
+You can retrieve node-ip using `k get nodes -o wide`.
 
 --
 
@@ -6730,76 +6320,7 @@ class: extra-details
 
 - It's not!
 
-- Perhaps we could benchmark our web services?
 
-  (with tools like `ab`, or even simpler, `httping`)
-
-.debug[[k8s/scalingdockercoins.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/scalingdockercoins.md)]
----
-
-## Benchmarking our web services
-
-- We want to check `hasher` and `rng`
-
-- We are going to use `httping`
-
-- It's just like `ping`, but using HTTP `GET` requests
-
-  (it measures how long it takes to perform one `GET` request)
-
-- It's used like this:
-  ```
-  httping [-c count] http://host:port/path
-  ```
-
-- Or even simpler:
-  ```
-  httping ip.ad.dr.ess
-  ```
-
-- We will use `httping` on the ClusterIP addresses of our services
-
-.debug[[k8s/scalingdockercoins.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/scalingdockercoins.md)]
----
-
-## Obtaining ClusterIP addresses
-
-- We can simply check the output of `kubectl get services`
-
-- Or do it programmatically, as in the example below
-
-.exercise[
-
-- Retrieve the IP addresses:
-  ```bash
-  HASHER=$(kubectl get svc hasher -o go-template={{.spec.clusterIP}})
-  RNG=$(kubectl get svc rng -o go-template={{.spec.clusterIP}})
-  ```
-
-]
-
-Now we can access the IP addresses of our services through `$HASHER` and `$RNG`.
-
-.debug[[k8s/scalingdockercoins.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/scalingdockercoins.md)]
----
-
-## Checking `hasher` and `rng` response times
-
-.exercise[
-
-- Check the response times for both services:
-  ```bash
-  httping -c 3 $HASHER
-  httping -c 3 $RNG
-  ```
-
-]
-
-- `hasher` is fine (it should take a few milliseconds to reply)
-
-- `rng` is not (it should take about 700 milliseconds if there are 10 workers)
-
-- Something is wrong with `rng`, but ... what?
 
 ???
 
@@ -7160,7 +6681,7 @@ class: title
 |
 [Back to table of contents](#toc-module-4)
 |
-[Next section](#toc-authoring-yaml)
+[Next section](#toc-rolling-updates)
 ]
 
 .debug[(automatically generated title slide)]
@@ -7706,260 +7227,13 @@ class: pic
 
 ---
 
-name: toc-authoring-yaml
-class: title
-
- Authoring YAML
-
-.nav[
-[Previous section](#toc-labels-and-selectors)
-|
-[Back to table of contents](#toc-module-4)
-|
-[Next section](#toc-rolling-updates)
-]
-
-.debug[(automatically generated title slide)]
-
----
-# Authoring YAML
-
-- There are various ways to generate YAML with Kubernetes, e.g.:
-
-  - `kubectl run`
-
-  - `kubectl create deployment` (and a few other `kubectl create` variants)
-
-  - `kubectl expose`
-
-- When and why do we need to write our own YAML?
-
-- How do we write YAML from scratch?
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## The limits of generated YAML
-
-- Many advanced (and even not-so-advanced) features require to write YAML:
-
-  - pods with multiple containers
-
-  - resource limits
-
-  - healthchecks
-
-  - DaemonSets, StatefulSets
-
-  - and more!
-
-- How do we access these features?
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## We don't have to start from scratch
-
-- Create a resource (e.g. Deployment)
-
-- Dump its YAML with `kubectl get -o yaml ...`
-
-- Edit the YAML
-
-- Use `kubectl apply -f ...` with the YAML file to:
-
-  - update the resource (if it's the same kind)
-
-  - create a new resource (if it's a different kind)
-
-- Or: Use The Docs, Luke
-
-  (the documentation almost always has YAML examples)
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## Generating YAML without creating resources
-
-- We can use the `--dry-run` option
-
-.exercise[
-
-- Generate the YAML for a Deployment without creating it:
-  ```bash
-  kubectl create deployment web --image nginx --dry-run
-  ```
-
-]
-
-- We can clean up that YAML even more if we want
-
-  (for instance, we can remove the `creationTimestamp` and empty dicts)
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## Using `--dry-run` with `kubectl apply`
-
-- The `--dry-run` option can also be used with `kubectl apply`
-
-- However, it can be misleading (it doesn't do a "real" dry run)
-
-- Let's see what happens in the following scenario:
-
-  - generate the YAML for a Deployment
-
-  - tweak the YAML to transform it into a DaemonSet
-
-  - apply that YAML to see what would actually be created
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## The limits of `kubectl apply --dry-run`
-
-.exercise[
-
-- Generate the YAML for a deployment:
-  ```bash
-  kubectl create deployment web --image=nginx -o yaml > web.yaml
-  ```
-
-- Change the `kind` in the YAML to make it a `DaemonSet`:
-  ```bash
-  sed -i s/Deployment/DaemonSet/ web.yaml
-  ```
-
-- Ask `kubectl` what would be applied:
-  ```bash
-  kubectl apply -f web.yaml --dry-run --validate=false -o yaml
-  ```
-
-]
-
-The resulting YAML doesn't represent a valid DaemonSet.
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## Server-side dry run
-
-- Since Kubernetes 1.13, we can use [server-side dry run and diffs](https://kubernetes.io/blog/2019/01/14/apiserver-dry-run-and-kubectl-diff/)
-
-- Server-side dry run will do all the work, but *not* persist to etcd
-
-  (all validation and mutation hooks will be executed)
-
-.exercise[
-
-- Try the same YAML file as earlier, with server-side dry run:
-  ```bash
-  kubectl apply -f web.yaml --dry-run=server --validate=false -o yaml
-  ```
-
-]
-
-The resulting YAML doesn't have the `replicas` field anymore.
-
-Instead, it has the fields expected in a DaemonSet.
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## Advantages of server-side dry run
-
-- The YAML is verified much more extensively
-
-- The only step that is skipped is "write to etcd"
-
-- YAML that passes server-side dry run *should* apply successfully
-
-  (unless the cluster state changes by the time the YAML is actually applied)
-
-- Validating or mutating hooks that have side effects can also be an issue
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## `kubectl diff`
-
-- Kubernetes 1.13 also introduced `kubectl diff`
-
-- `kubectl diff` does a server-side dry run, *and* shows differences
-
-.exercise[
-
-- Try `kubectl diff` on the YAML that we tweaked earlier:
-  ```bash
-  kubectl diff -f web.yaml
-  ```
-
-<!-- ```wait status:``` -->
-
-]
-
-Note: we don't need to specify `--validate=false` here.
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## Advantage of YAML
-
-- Using YAML (instead of `kubectl create <kind>`) allows to be *declarative*
-
-- The YAML describes the desired state of our cluster and applications
-
-- YAML can be stored, versioned, archived (e.g. in git repositories)
-
-- To change resources, change the YAML files
-
-  (instead of using `kubectl edit`/`scale`/`label`/etc.)
-
-- Changes can be reviewed before being applied
-
-  (with code reviews, pull requests ...)
-
-- This workflow is sometimes called "GitOps"
-
-  (there are tools like Weave Flux or GitKube to facilitate it)
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-## YAML in practice
-
-- Get started with `kubectl create deployment` and `kubectl expose`
-
-- Dump the YAML with `kubectl get -o yaml`
-
-- Tweak that YAML and `kubectl apply` it back
-
-- Store that YAML for reference (for further deployments)
-
-- Feel free to clean up the YAML:
-
-  - remove fields you don't know
-
-  - check that it still works!
-
-- That YAML will be useful later when using e.g. Kustomize or Helm
-
-.debug[[k8s/dryrun.md](https://github.com/PierreZ/container.training.git/tree/yncrea-2020-2021/slides/k8s/dryrun.md)]
----
-
-class: pic
-
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
-
----
-
 name: toc-rolling-updates
 class: title
 
  Rolling updates
 
 .nav[
-[Previous section](#toc-authoring-yaml)
+[Previous section](#toc-labels-and-selectors)
 |
 [Back to table of contents](#toc-module-5)
 |
@@ -8444,7 +7718,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
 
 ---
 
@@ -9132,7 +8406,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
 
 ---
 
@@ -9334,7 +8608,7 @@ Our annotation shows up (and overwrote whatever was there before).
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
 
 ---
 
@@ -9750,7 +9024,7 @@ Note: we could have used `--namespace=default` for the same result.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
 
 ---
 
@@ -9985,7 +9259,7 @@ We can now utilize the cluster exactly as if we're logged into a node, except th
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
 
 ---
 
@@ -10152,7 +9426,7 @@ installed and set up `kubectl` to communicate with your cluster.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
 
 ---
 
@@ -10391,7 +9665,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
 
 ---
 
@@ -11182,7 +10456,7 @@ For inspiration, check [flagger by Weave](https://github.com/weaveworks/flagger)
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
 
 ---
 
@@ -11630,7 +10904,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
 
 ---
 
@@ -12055,7 +11329,7 @@ Note: it might take a minute or two for the worker to start.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
 
 ---
 
@@ -12548,7 +11822,7 @@ All unspecified values will take the default values defined in the chart.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
 
 ---
 
@@ -12830,7 +12104,7 @@ We see the components mentioned above: `Chart.yaml`, `templates/`, `values.yaml`
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
 
 ---
 
@@ -13090,7 +12364,7 @@ have details about recommended annotations and labels.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
 
 ---
 
@@ -13752,7 +13026,7 @@ We can look at the definition, but it's fairly complex ...
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
 
 ---
 
@@ -14028,7 +13302,7 @@ The chart is in a structured format, but it's entirely captured in this JSON.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
 
 ---
 
@@ -14529,7 +13803,7 @@ troubleshoot easily, without having to poke holes in our firewall.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
 
 ---
 
@@ -15352,7 +14626,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
 
 ---
 
@@ -15940,7 +15214,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
 
 ---
 
@@ -16193,7 +15467,7 @@ Access will be denied, but we should see that were correctly *authenticated* as 
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
 
 ---
 
@@ -16699,7 +15973,7 @@ To be usable in real environments, we would need to add:
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
 
 ---
 
@@ -17126,7 +16400,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
 
 ---
 
@@ -17455,7 +16729,7 @@ EOF
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
 
 ---
 
@@ -17982,7 +17256,7 @@ spec:
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
 
 ---
 
@@ -18175,7 +17449,7 @@ They handle the whole "code repository → Docker image" workflow.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
 
 ---
 
@@ -18428,7 +17702,7 @@ But ... is it all about [speed](https://github.com/AkihiroSuda/buildbench/issues
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
 
 ---
 
@@ -19067,7 +18341,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
 
 ---
 
@@ -19286,7 +18560,7 @@ spec:
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
 
 ---
 
@@ -19553,7 +18827,7 @@ consul agent -data-dir=/consul/data -client=0.0.0.0 -server -ui \
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
 
 ---
 
@@ -19863,7 +19137,7 @@ This will trigger the following actions.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
 
 ---
 
@@ -20152,7 +19426,7 @@ class: title
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
 
 ---
 
@@ -20967,7 +20241,7 @@ were inspired by [Portworx examples on Katacoda](https://katacoda.com/portworx/s
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
 
 ---
 
@@ -21152,7 +20426,7 @@ create the resources in the `kube-system` namespace or in a dedicated namespace.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
 
 ---
 
@@ -21780,7 +21054,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
 
 ---
 
@@ -22063,7 +21337,7 @@ This set of resources makes sure that this service won't be killed (as long as i
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
 
 ---
 
@@ -22163,7 +21437,7 @@ per Pod, but it's not [officially documented yet](https://github.com/kubernetes/
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
 
 ---
 
@@ -22321,7 +21595,7 @@ services.nodeports               0     0
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
 
 ---
 
@@ -22475,7 +21749,7 @@ class: title
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
 
 ---
 
@@ -22592,7 +21866,7 @@ If it shows our nodes and their CPU and memory load, we're good!
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
 
 ---
 
@@ -22803,7 +22077,7 @@ Check [this blog post](http://jpetazzo.github.io/2019/02/13/running-kubernetes-w
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
 
 ---
 
@@ -23154,7 +22428,7 @@ This can also be set with `--cpu-percent=`.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
 
 ---
 
@@ -23901,7 +23175,7 @@ Also check the logs of the `prometheus-adapter` and the `kube-controller-manager
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
 
 ---
 
@@ -24332,7 +23606,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
 
 ---
 
@@ -24534,7 +23808,7 @@ Examples:
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
 
 ---
 
@@ -25135,7 +24409,7 @@ Shell to the rescue!
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
 
 ---
 
@@ -25328,7 +24602,7 @@ But we need to know exactly the scenarios that they can handle.*
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
 
 ---
 
@@ -25769,7 +25043,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
 
 ---
 
@@ -26494,7 +25768,7 @@ Note: the `apiVersion` field appears to be optional.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-1.jpg)]
 
 ---
 
@@ -26993,7 +26267,7 @@ After the Kibana UI loads, we need to click around a bit
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/train-of-containers-2.jpg)]
 
 ---
 
@@ -27261,7 +26535,7 @@ See [this blog post](https://www.openshift.com/blog/the-hidden-dangers-of-termin
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/two-containers-on-a-truck.jpg)]
 
 ---
 
@@ -27487,7 +26761,7 @@ Invalid content: k8s/events.md
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/wall-of-containers.jpeg)]
 
 ---
 
@@ -28386,7 +27660,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/Container-Ship-Freighter-Navigation-Elbe-Romance-1782991.jpg)]
 
 ---
 
@@ -28980,7 +28254,7 @@ Sometimes it works, sometimes it doesn't. Why?
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/ShippingContainerSFBay.jpg)]
 
 ---
 
@@ -29615,7 +28889,7 @@ done
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/aerial-view-of-containers.jpg)]
 
 ---
 
@@ -29740,7 +29014,7 @@ class: title
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/blue-containers.jpg)]
 
 ---
 
@@ -30024,7 +29298,7 @@ To delete the pod, we need to delete (or move) the manifest file.
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/chinook-helicopter-container.jpg)]
 
 ---
 
@@ -30587,7 +29861,7 @@ class: extra-details
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-cranes.jpg)]
 
 ---
 
@@ -31006,7 +30280,7 @@ docker run --rm --net host -v $PWD:/vol \
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/container-housing.jpg)]
 
 ---
 
@@ -31189,7 +30463,7 @@ The list includes the following providers:
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/containers-by-the-water.jpg)]
 
 ---
 
@@ -31473,7 +30747,7 @@ class: title
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/distillery-containers.jpg)]
 
 ---
 
@@ -31735,7 +31009,7 @@ are a few tools that can help us.*
 
 class: pic
 
-.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/plastic-containers.JPG)]
+.interstitial[![Image separating from the next module](https://gallant-turing-d0d520.netlify.com/containers/lots-of-containers.jpg)]
 
 ---
 

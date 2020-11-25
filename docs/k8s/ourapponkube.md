@@ -21,26 +21,6 @@
 
 ---
 
-class: extra-details
-
-## Deploying other images
-
-- If we wanted to deploy images from another registry ...
-
-- ... Or with a different tag ...
-
-- ... We could use the following snippet:
-
-```bash
-  REGISTRY=dockercoins
-  TAG=v0.1
-  for SERVICE in hasher rng webui worker; do
-    kubectl create deployment $SERVICE --image=$REGISTRY/$SERVICE:$TAG
-  done
-```
-
----
-
 ## Is this working?
 
 - After waiting for the deployment to complete, let's look at the logs!
@@ -157,7 +137,7 @@ We should now see the `worker`, well, working happily.
 
 --
 
-Yes, this may take a little while to update. *(Narrator: it was DNS.)*
+You can retrieve node-ip using `k get nodes -o wide`.
 
 --
 
